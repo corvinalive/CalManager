@@ -643,6 +643,14 @@ void QPressWidget::Print()
 		ss=QObject::trUtf8("<text:s text:c=\"20\"/>");
 	str.replace(QString("month"),ss);
 
+	//add year
+	ss=dateEdit->date().toString("yyyy");
+	str.replace(QString("ywhen"),ss);
+	
+	int yearbefore=dateEdit->date().year()+interval_box->value();
+	ss.setNum(yearbefore);
+	str.replace(QString("ybefore"), ss);	
+	
 	str.replace(QString("pribor"),NameBox->currentText());
 	
 	str.replace(QString("kleimo"),KleimoEdit->text());
@@ -651,6 +659,8 @@ void QPressWidget::Print()
 
 	str.replace(QString("owner"), OwnerBox->currentText());
 	str.replace(QString("inn-inn-inn"), INNEdit->text());
+	
+	//ywhen ybefore
 	
 //str.replace(QString("vosduh"), VosduhEdit->text());
 	ss="";
