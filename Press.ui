@@ -1,0 +1,1305 @@
+<ui version="4.0" >
+ <class>PressForm</class>
+ <widget class="QWidget" name="PressForm" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>724</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>724</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Поверка</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" >
+   <item>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Датчик и протокол</string>
+      </attribute>
+      <widget class="QLabel" name="label" >
+       <property name="geometry" >
+        <rect>
+         <x>6</x>
+         <y>15</y>
+         <width>54</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Тип</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="NameBox" >
+       <property name="geometry" >
+        <rect>
+         <x>114</x>
+         <y>6</y>
+         <width>271</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>FR 3051</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Метран</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Сапфир</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_2" >
+       <property name="geometry" >
+        <rect>
+         <x>8</x>
+         <y>42</y>
+         <width>109</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Заводской номер</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SerialEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>114</x>
+         <y>36</y>
+         <width>271</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3" >
+       <property name="geometry" >
+        <rect>
+         <x>6</x>
+         <y>72</y>
+         <width>89</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Принадлежит</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="OwnerBox" >
+       <property name="geometry" >
+        <rect>
+         <x>116</x>
+         <y>69</y>
+         <width>271</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>ОАО "СН-МНГ"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "ТНК-Нижневартовск"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "СНГДУ-2"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "СНГ"</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QDateEdit" name="dateEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>472</x>
+         <y>246</y>
+         <width>110</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="calendarPopup" >
+        <bool>true</bool>
+       </property>
+       <property name="timeSpec" >
+        <enum>Qt::LocalTime</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14" >
+       <property name="geometry" >
+        <rect>
+         <x>420</x>
+         <y>252</y>
+         <width>37</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Дата</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15" >
+       <property name="geometry" >
+        <rect>
+         <x>418</x>
+         <y>285</y>
+         <width>67</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Печатать:</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="DayBox" >
+       <property name="geometry" >
+        <rect>
+         <x>492</x>
+         <y>282</y>
+         <width>59</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>день</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="MonthBox" >
+       <property name="geometry" >
+        <rect>
+         <x>552</x>
+         <y>279</y>
+         <width>65</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>месяц</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="PoverBox" >
+       <property name="geometry" >
+        <rect>
+         <x>418</x>
+         <y>213</y>
+         <width>265</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>О. П. Голуб</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Е. В. Денис</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Н. В. Григорьева</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>С. В. Багаева</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_16" >
+       <property name="geometry" >
+        <rect>
+         <x>418</x>
+         <y>195</y>
+         <width>89</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Поверитель</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="KleimoEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>420</x>
+         <y>27</y>
+         <width>271</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_17" >
+       <property name="geometry" >
+        <rect>
+         <x>424</x>
+         <y>9</y>
+         <width>209</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Номер клейма предыдущей поверки</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18" >
+       <property name="geometry" >
+        <rect>
+         <x>420</x>
+         <y>63</y>
+         <width>151</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">темп. воздуха (23±2), °C&lt;/p>&lt;/body>&lt;/html></string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19" >
+       <property name="geometry" >
+        <rect>
+         <x>418</x>
+         <y>123</y>
+         <width>117</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>атм. давление</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_20" >
+       <property name="geometry" >
+        <rect>
+         <x>420</x>
+         <y>93</y>
+         <width>139</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">влажность (30÷80), %&lt;/p>&lt;/body>&lt;/html></string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="tvos_box" >
+       <property name="geometry" >
+        <rect>
+         <x>590</x>
+         <y>57</y>
+         <width>91</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>0</number>
+       </property>
+       <property name="minimum" >
+        <double>21.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>25.000000000000000</double>
+       </property>
+       <property name="singleStep" >
+        <double>1.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>23.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="water_box" >
+       <property name="geometry" >
+        <rect>
+         <x>590</x>
+         <y>90</y>
+         <width>91</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>0</number>
+       </property>
+       <property name="minimum" >
+        <double>30.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>80.000000000000000</double>
+       </property>
+       <property name="singleStep" >
+        <double>1.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>55.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="atmkpa_box" >
+       <property name="geometry" >
+        <rect>
+         <x>420</x>
+         <y>162</y>
+         <width>91</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>1</number>
+       </property>
+       <property name="minimum" >
+        <double>84.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>106.700000000000003</double>
+       </property>
+       <property name="singleStep" >
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value" >
+        <double>95.500000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="atmmm_box" >
+       <property name="geometry" >
+        <rect>
+         <x>526</x>
+         <y>162</y>
+         <width>91</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>0</number>
+       </property>
+       <property name="minimum" >
+        <double>630.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>800.000000000000000</double>
+       </property>
+       <property name="singleStep" >
+        <double>1.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>630.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21" >
+       <property name="geometry" >
+        <rect>
+         <x>422</x>
+         <y>144</y>
+         <width>83</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">84÷106,7 кПа&lt;/p>&lt;/body>&lt;/html></string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22" >
+       <property name="geometry" >
+        <rect>
+         <x>526</x>
+         <y>141</y>
+         <width>115</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>630÷800 мм.рт.ст</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23" >
+       <property name="geometry" >
+        <rect>
+         <x>12</x>
+         <y>105</y>
+         <width>53</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>ИНН</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="INNEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>116</x>
+         <y>102</y>
+         <width>271</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QWidget" name="" >
+       <property name="geometry" >
+        <rect>
+         <x>18</x>
+         <y>144</y>
+         <width>94</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2" >
+        <item>
+         <widget class="QLabel" name="label_4" >
+          <property name="text" >
+           <string>ед. измерения</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="UnitBox" >
+          <property name="editable" >
+           <bool>true</bool>
+          </property>
+          <item>
+           <property name="text" >
+            <string>МПа</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>бар</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>кПа</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>кгс/см2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>мм. рт. ст</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5" >
+          <property name="text" >
+           <string>Нижний предел</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="minBox" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="maximum" >
+           <double>10000.000000000000000</double>
+          </property>
+          <property name="value" >
+           <double>0.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="" >
+       <property name="geometry" >
+        <rect>
+         <x>134</x>
+         <y>144</y>
+         <width>96</width>
+         <height>112</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3" >
+        <item>
+         <widget class="QLabel" name="label_13" >
+          <property name="text" >
+           <string>Класс точности</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="KlassBox" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.250000000000000</double>
+          </property>
+          <property name="value" >
+           <double>0.250000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6" >
+          <property name="text" >
+           <string>Верхний предел</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="maxBox" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="maximum" >
+           <double>10000.000000000000000</double>
+          </property>
+          <property name="value" >
+           <double>4.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Измерения</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget" >
+       <property name="geometry" >
+        <rect>
+         <x>2</x>
+         <y>36</y>
+         <width>697</width>
+         <height>280</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout" >
+        <property name="margin" >
+         <number>1</number>
+        </property>
+        <property name="spacing" >
+         <number>1</number>
+        </property>
+        <item row="5" column="0" >
+         <widget class="QLabel" name="p1Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" >
+         <widget class="QLabel" name="p2Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" >
+         <widget class="QLabel" name="p3Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" >
+         <widget class="QLabel" name="p4Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" >
+         <widget class="QLabel" name="p5Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" >
+         <widget class="QLabel" name="p6Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" >
+         <widget class="QLabel" name="i1Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" >
+         <widget class="QLabel" name="i2Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" >
+         <widget class="QLabel" name="i3Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" >
+         <widget class="QLabel" name="i4Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1" >
+         <widget class="QLabel" name="i5Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1" >
+         <widget class="QLabel" name="i6Value" >
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2" >
+         <widget class="QDoubleSpinBox" name="i1u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2" >
+         <widget class="QDoubleSpinBox" name="i2u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="2" >
+         <widget class="QDoubleSpinBox" name="i3u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2" >
+         <widget class="QDoubleSpinBox" name="i4u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2" >
+         <widget class="QDoubleSpinBox" name="i5u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2" >
+         <widget class="QDoubleSpinBox" name="i6u" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3" >
+         <widget class="QDoubleSpinBox" name="i1d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="3" >
+         <widget class="QDoubleSpinBox" name="i2d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="3" >
+         <widget class="QDoubleSpinBox" name="i3d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="3" >
+         <widget class="QDoubleSpinBox" name="i4d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="3" >
+         <widget class="QDoubleSpinBox" name="i5d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="3" >
+         <widget class="QDoubleSpinBox" name="i6d" >
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4" >
+         <widget class="QLabel" name="du1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4" >
+         <widget class="QLabel" name="du2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="4" >
+         <widget class="QLabel" name="du3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4" >
+         <widget class="QLabel" name="du4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="4" >
+         <widget class="QLabel" name="du5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="4" >
+         <widget class="QLabel" name="du6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="5" >
+         <widget class="QLabel" name="dd1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="5" >
+         <widget class="QLabel" name="dd2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="5" >
+         <widget class="QLabel" name="dd3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="5" >
+         <widget class="QLabel" name="dd4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="5" >
+         <widget class="QLabel" name="dd5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="5" >
+         <widget class="QLabel" name="dd6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="6" >
+         <widget class="QLabel" name="v1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="6" >
+         <widget class="QLabel" name="v2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="6" >
+         <widget class="QLabel" name="v3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="6" >
+         <widget class="QLabel" name="v4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="6" >
+         <widget class="QLabel" name="v5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="6" >
+         <widget class="QLabel" name="v6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>0,000 мА (0,00%)</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3" >
+         <widget class="QLabel" name="label_12" >
+          <property name="text" >
+           <string>обр. ход</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2" >
+         <widget class="QLabel" name="label_11" >
+          <property name="text" >
+           <string>Пр. ход</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <widget class="QLabel" name="label_9" >
+          <property name="text" >
+           <string>Расч. ток</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QLabel" name="label_8" >
+          <property name="text" >
+           <string>Заданное давление</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0" >
+         <widget class="QLabel" name="label_maxd" >
+          <property name="text" >
+           <string>0,00%</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="2" >
+         <widget class="QLabel" name="label_maxv" >
+          <property name="text" >
+           <string>0,00</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2" >
+         <widget class="QLabel" name="label_10" >
+          <property name="text" >
+           <string>измереннный ток</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label_7" >
+       <property name="geometry" >
+        <rect>
+         <x>10</x>
+         <y>9</y>
+         <width>111</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Кол-во точек</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="col_pointsBox" >
+       <property name="geometry" >
+        <rect>
+         <x>132</x>
+         <y>6</y>
+         <width>51</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="minimum" >
+        <number>5</number>
+       </property>
+       <property name="maximum" >
+        <number>6</number>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="PrintButton" >
+     <property name="text" >
+      <string>Протокол...</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>NameBox</tabstop>
+  <tabstop>SerialEdit</tabstop>
+  <tabstop>OwnerBox</tabstop>
+  <tabstop>INNEdit</tabstop>
+  <tabstop>UnitBox</tabstop>
+  <tabstop>KlassBox</tabstop>
+  <tabstop>minBox</tabstop>
+  <tabstop>maxBox</tabstop>
+  <tabstop>KleimoEdit</tabstop>
+  <tabstop>tvos_box</tabstop>
+  <tabstop>water_box</tabstop>
+  <tabstop>atmkpa_box</tabstop>
+  <tabstop>atmmm_box</tabstop>
+  <tabstop>PoverBox</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>DayBox</tabstop>
+  <tabstop>MonthBox</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>col_pointsBox</tabstop>
+  <tabstop>i1u</tabstop>
+  <tabstop>i1d</tabstop>
+  <tabstop>i2u</tabstop>
+  <tabstop>i2d</tabstop>
+  <tabstop>i3u</tabstop>
+  <tabstop>i3d</tabstop>
+  <tabstop>i4u</tabstop>
+  <tabstop>i4d</tabstop>
+  <tabstop>i5u</tabstop>
+  <tabstop>i5d</tabstop>
+  <tabstop>i6u</tabstop>
+  <tabstop>i6d</tabstop>
+  <tabstop>PrintButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

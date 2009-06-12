@@ -1,0 +1,1346 @@
+<ui version="4.0" >
+ <class>TempForm</class>
+ <widget class="QWidget" name="TempForm" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>724</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>724</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Поверка датчика температуры</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" >
+   <item>
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="currentIndex" >
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Датчик и протокол</string>
+      </attribute>
+      <widget class="QLabel" name="label" >
+       <property name="geometry" >
+        <rect>
+         <x>6</x>
+         <y>15</y>
+         <width>54</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Тип</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="NameBox" >
+       <property name="geometry" >
+        <rect>
+         <x>114</x>
+         <y>6</y>
+         <width>271</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>644</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>244</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>3144</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>248</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_2" >
+       <property name="geometry" >
+        <rect>
+         <x>8</x>
+         <y>42</y>
+         <width>133</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Заводской номер ИП</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SerialEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>154</x>
+         <y>36</y>
+         <width>231</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3" >
+       <property name="geometry" >
+        <rect>
+         <x>18</x>
+         <y>105</y>
+         <width>89</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Принадлежит</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="OwnerBox" >
+       <property name="geometry" >
+        <rect>
+         <x>118</x>
+         <y>102</y>
+         <width>271</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="maximumSize" >
+        <size>
+         <width>16777215</width>
+         <height>16777212</height>
+        </size>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>ОАО "СН-МНГ"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "ТНК-Нижневартовск"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "СНГДУ-2"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "СНГ"</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ОАО "ННП"</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_5" >
+       <property name="geometry" >
+        <rect>
+         <x>26</x>
+         <y>153</y>
+         <width>97</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Нижний предел</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="minBox" >
+       <property name="geometry" >
+        <rect>
+         <x>22</x>
+         <y>174</y>
+         <width>89</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="minimum" >
+        <double>-10000.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_6" >
+       <property name="geometry" >
+        <rect>
+         <x>140</x>
+         <y>150</y>
+         <width>99</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Верхний предел</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="maxBox" >
+       <property name="geometry" >
+        <rect>
+         <x>134</x>
+         <y>174</y>
+         <width>97</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="maximum" >
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>50.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="dateEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>536</x>
+         <y>216</y>
+         <width>110</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="calendarPopup" >
+        <bool>true</bool>
+       </property>
+       <property name="timeSpec" >
+        <enum>Qt::LocalTime</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14" >
+       <property name="geometry" >
+        <rect>
+         <x>430</x>
+         <y>225</y>
+         <width>37</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Дата</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15" >
+       <property name="geometry" >
+        <rect>
+         <x>430</x>
+         <y>258</y>
+         <width>67</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Печатать:</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="DayBox" >
+       <property name="geometry" >
+        <rect>
+         <x>514</x>
+         <y>252</y>
+         <width>59</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>день</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="MonthBox" >
+       <property name="geometry" >
+        <rect>
+         <x>582</x>
+         <y>252</y>
+         <width>65</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>месяц</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="PoverBox" >
+       <property name="geometry" >
+        <rect>
+         <x>426</x>
+         <y>186</y>
+         <width>265</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="editable" >
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>О. П. Голуб</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Е. В. Денис</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Н. В. Григорьева</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>С. В. Багаева</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_16" >
+       <property name="geometry" >
+        <rect>
+         <x>428</x>
+         <y>159</y>
+         <width>89</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Поверитель</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="KleimoEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>426</x>
+         <y>27</y>
+         <width>271</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_17" >
+       <property name="geometry" >
+        <rect>
+         <x>430</x>
+         <y>9</y>
+         <width>209</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Номер клейма предыдущей поверки</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="VosduhEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>544</x>
+         <y>60</y>
+         <width>53</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>20</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18" >
+       <property name="geometry" >
+        <rect>
+         <x>430</x>
+         <y>66</y>
+         <width>105</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>темп. воздуха, гр.</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19" >
+       <property name="geometry" >
+        <rect>
+         <x>428</x>
+         <y>102</y>
+         <width>117</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>атм. давление, кПа</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="AtmEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>544</x>
+         <y>96</y>
+         <width>53</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>99</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_20" >
+       <property name="geometry" >
+        <rect>
+         <x>430</x>
+         <y>132</y>
+         <width>105</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>влажность, %</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="WaterEdit" >
+       <property name="geometry" >
+        <rect>
+         <x>546</x>
+         <y>129</y>
+         <width>53</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>55</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="SerialEdit_2" >
+       <property name="geometry" >
+        <rect>
+         <x>138</x>
+         <y>66</y>
+         <width>247</width>
+         <height>28</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4" >
+       <property name="geometry" >
+        <rect>
+         <x>4</x>
+         <y>72</y>
+         <width>133</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Заводской номер ТСП</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_7" >
+       <property name="geometry" >
+        <rect>
+         <x>38</x>
+         <y>207</y>
+         <width>149</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Диапазон поверки</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11" >
+       <property name="geometry" >
+        <rect>
+         <x>18</x>
+         <y>225</y>
+         <width>97</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Нижний предел</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="pmaxBox" >
+       <property name="geometry" >
+        <rect>
+         <x>122</x>
+         <y>240</y>
+         <width>97</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="maximum" >
+        <double>150.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>50.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23" >
+       <property name="geometry" >
+        <rect>
+         <x>132</x>
+         <y>225</y>
+         <width>99</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Верхний предел</string>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="pminBox" >
+       <property name="geometry" >
+        <rect>
+         <x>20</x>
+         <y>243</y>
+         <width>89</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="minimum" >
+        <double>-50.000000000000000</double>
+       </property>
+       <property name="maximum" >
+        <double>10000.000000000000000</double>
+       </property>
+       <property name="value" >
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24" >
+       <property name="geometry" >
+        <rect>
+         <x>58</x>
+         <y>132</y>
+         <width>185</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Пределы измерения датчика</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tab_2" >
+      <attribute name="title" >
+       <string>Измерения</string>
+      </attribute>
+      <widget class="QWidget" name="gridLayoutWidget" >
+       <property name="geometry" >
+        <rect>
+         <x>2</x>
+         <y>36</y>
+         <width>704</width>
+         <height>280</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout" >
+        <property name="margin" >
+         <number>1</number>
+        </property>
+        <property name="spacing" >
+         <number>1</number>
+        </property>
+        <item row="5" column="0" >
+         <widget class="QLabel" name="p1Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" >
+         <widget class="QLabel" name="p2Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" >
+         <widget class="QLabel" name="p3Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" >
+         <widget class="QLabel" name="p4Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" >
+         <widget class="QLabel" name="p5Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="0" >
+         <widget class="QLabel" name="p6Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="2" >
+         <widget class="QDoubleSpinBox" name="i1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>4.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2" >
+         <widget class="QDoubleSpinBox" name="i2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>7.200000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="2" >
+         <widget class="QDoubleSpinBox" name="i3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>10.400000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="2" >
+         <widget class="QDoubleSpinBox" name="i4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>13.600000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="2" >
+         <widget class="QDoubleSpinBox" name="i5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>16.800000000000001</double>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="2" >
+         <widget class="QDoubleSpinBox" name="i6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>3</number>
+          </property>
+          <property name="singleStep" >
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value" >
+           <double>20.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="4" >
+         <widget class="QLabel" name="du1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="4" >
+         <widget class="QLabel" name="du2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="4" >
+         <widget class="QLabel" name="du3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="4" >
+         <widget class="QLabel" name="du4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="4" >
+         <widget class="QLabel" name="du5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="4" >
+         <widget class="QLabel" name="du6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3" >
+         <widget class="QLabel" name="label_12" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Измеренная температура</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <widget class="QLabel" name="label_9" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Действительная температура</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QLabel" name="label_8" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Заданная температура</string>
+          </property>
+          <property name="scaledContents" >
+           <bool>false</bool>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2" >
+         <widget class="QLabel" name="label_10" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>измереннный ток</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4" >
+         <widget class="QLabel" name="label_13" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Погрешность</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" >
+         <widget class="QDoubleSpinBox" name="t1" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" >
+         <widget class="QDoubleSpinBox" name="t2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" >
+         <widget class="QDoubleSpinBox" name="t3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="3" >
+         <widget class="QLabel" name="i1Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="3" >
+         <widget class="QLabel" name="i2Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="3" >
+         <widget class="QLabel" name="i3Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" >
+         <widget class="QDoubleSpinBox" name="t4" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1" >
+         <widget class="QDoubleSpinBox" name="t5" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1" >
+         <widget class="QDoubleSpinBox" name="t6" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="decimals" >
+           <number>2</number>
+          </property>
+          <property name="minimum" >
+           <double>-200.000000000000000</double>
+          </property>
+          <property name="maximum" >
+           <double>200.000000000000000</double>
+          </property>
+          <property name="singleStep" >
+           <double>0.010000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="3" >
+         <widget class="QLabel" name="i4Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="3" >
+         <widget class="QLabel" name="i5Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="3" >
+         <widget class="QLabel" name="i6Value" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>TextLabel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QDoubleSpinBox" name="r0box" >
+       <property name="geometry" >
+        <rect>
+         <x>164</x>
+         <y>3</y>
+         <width>99</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="maximum" >
+        <double>200.000000000000000</double>
+       </property>
+       <property name="singleStep" >
+        <double>0.001000000000000</double>
+       </property>
+       <property name="value" >
+        <double>100.000000000000000</double>
+       </property>
+      </widget>
+      <widget class="QDoubleSpinBox" name="r100box" >
+       <property name="geometry" >
+        <rect>
+         <x>394</x>
+         <y>3</y>
+         <width>99</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="decimals" >
+        <number>3</number>
+       </property>
+       <property name="maximum" >
+        <double>200.000000000000000</double>
+       </property>
+       <property name="singleStep" >
+        <double>0.001000000000000</double>
+       </property>
+       <property name="value" >
+        <double>138.508999999999986</double>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21" >
+       <property name="geometry" >
+        <rect>
+         <x>54</x>
+         <y>9</y>
+         <width>95</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>R 0</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22" >
+       <property name="geometry" >
+        <rect>
+         <x>294</x>
+         <y>6</y>
+         <width>95</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>R 100</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="PrintButton" >
+     <property name="text" >
+      <string>Протокол...</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>NameBox</tabstop>
+  <tabstop>SerialEdit</tabstop>
+  <tabstop>SerialEdit_2</tabstop>
+  <tabstop>OwnerBox</tabstop>
+  <tabstop>minBox</tabstop>
+  <tabstop>maxBox</tabstop>
+  <tabstop>pminBox</tabstop>
+  <tabstop>pmaxBox</tabstop>
+  <tabstop>KleimoEdit</tabstop>
+  <tabstop>VosduhEdit</tabstop>
+  <tabstop>AtmEdit</tabstop>
+  <tabstop>WaterEdit</tabstop>
+  <tabstop>PoverBox</tabstop>
+  <tabstop>dateEdit</tabstop>
+  <tabstop>DayBox</tabstop>
+  <tabstop>MonthBox</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>r0box</tabstop>
+  <tabstop>r100box</tabstop>
+  <tabstop>t1</tabstop>
+  <tabstop>i1</tabstop>
+  <tabstop>t2</tabstop>
+  <tabstop>i2</tabstop>
+  <tabstop>t3</tabstop>
+  <tabstop>i3</tabstop>
+  <tabstop>t4</tabstop>
+  <tabstop>i4</tabstop>
+  <tabstop>t5</tabstop>
+  <tabstop>i5</tabstop>
+  <tabstop>t6</tabstop>
+  <tabstop>i6</tabstop>
+  <tabstop>PrintButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
