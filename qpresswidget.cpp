@@ -110,8 +110,53 @@ void QPressWidget::SetupControls(bool )
 			}
 			
 		}
+		file.close();
 	}
 	
+//	Заполняем список моделей датчиков и их методик поверки, межповерочный интвервал
+
+	NameBox->clear();
+	NameBox->addItem("");
+		
+	file.setFileName("press-list.txt");
+	if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		QTextStream in(&file);
+		while (!in.atEnd())
+		{
+			QString line = in.readLine();
+			line.trimmed();
+			//check the line
+			if(line[0]=='#')
+				continue;
+			if(line.isEmpty())
+				continue;
+			int i=line.indexOf('\t');
+			QString model;
+			if(i==-1)
+			{
+				model=line;
+				NameBox->addItem(model);
+			}
+			else
+			{
+				model=line;
+				model.remove(i,100000);
+				QString mi=line;
+				//остались методики и интервал
+				mi.remove(0,i+1);
+				i=mi.indexOf('\t');
+				if(i==-1)
+				{//есть только методика
+				}
+				else
+				{
+				}
+				OwnerBox->addItem(name,inn);
+			}
+			
+		}
+	}
 	
 	//read min % max
 	min=minBox->value();
@@ -659,8 +704,6 @@ void QPressWidget::Print()
 
 	str.replace(QString("owner"), OwnerBox->currentText());
 	str.replace(QString("inn-inn-inn"), INNEdit->text());
-	
-	//ywhen ybefore
 	
 //str.replace(QString("vosduh"), VosduhEdit->text());
 	ss="";
