@@ -24,6 +24,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QTextStream>
+#include <QSettings>
 
 //-----------------------------------------------------------------------------
 QPressWidget::QPressWidget(QWidget *parent)
@@ -73,52 +74,39 @@ QPressWidget::~QPressWidget()
 /*!
     \fn QPressWidget::SetupControls()
  */
+struct Company{
+		QString Name;
+		QString INN;
+	};
+
 void QPressWidget::SetupControls(bool )
 {
     /// @todo implement me
 	//Заполняем список компаний и их ИНН
+
+	QSettings settings("calmanager.ini", QSettings::IniFormat);
+	
 	OwnerBox->clear();
 	OwnerBox->addItem("");
 		
-	QFile file("companies.txt");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-		QTextStream in(&file);
-		while (!in.atEnd())
-		{
-			QString line = in.readLine();
-			line.trimmed();
-			//check the line
-			if(line[0]=='#')
-				continue;
-			if(line.isEmpty())
-				continue;
-			int i=line.indexOf('\t');
-			QString name;
-			if(i==-1)
-			{
-				name=line;
-				OwnerBox->addItem(name);
-			}
-			else
-			{
-				name=line;
-				name.remove(i,100000);
-				QString inn=line;
-				inn.remove(0,i+1);
-				OwnerBox->addItem(name,inn);
-			}
-			
-		}
-		file.close();
+	int size = settings.beginReadArray("companies");
+	QString name;
+	QString inn;
+	QByteArray ba1,ba2;
+	for (int i = 0; i < size; ++i) {
+		settings.setArrayIndex(i);
+		ba1 = settings.value("Name").toByteArray();
+		ba2 = settings.value("INN").toByteArray();
+		name=QString::fromLocal8Bit(ba1.data());
+		OwnerBox->addItem(name,inn);
 	}
-	
+	settings.endArray();	
 //	Заполняем список моделей датчиков и их методик поверки, межповерочный интвервал
 
 	NameBox->clear();
 	NameBox->addItem("");
 		
-	file.setFileName("press-list.txt");
+/*	file.setFileName("press-list.txt");
 	if (file.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
 		QTextStream in(&file);
@@ -146,17 +134,11 @@ void QPressWidget::SetupControls(bool )
 				//остались методики и интервал
 				mi.remove(0,i+1);
 				i=mi.indexOf('\t');
-				if(i==-1)
-				{//есть только методика
-				}
-				else
-				{
-				}
-				OwnerBox->addItem(name,inn);
+//				OwnerBox->addItem(name,inn);
 			}
 			
 		}
-	}
+	}*/
 	
 	//read min % max
 	min=minBox->value();

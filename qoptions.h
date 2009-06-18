@@ -17,33 +17,32 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
-#ifndef QMYMAINWINDOW_H
-#define QMYMAINWINDOW_H
+#ifndef QOPTIONS_H
+#define QOPTIONS_H
 
-#include <QMainWindow>
+#include <QDialog>
 
-class QLabel;
-class QMdiArea;
+#include "ui_options.h"
+
+
 /**
+Класс окна для редактирования настроек ПО
+
 	@author Зонов В. М. <corvinalive@list.ru>
-*/
-class QMyMainWindow : public QMainWindow
+ */
+class QOptionsDialog : public QDialog, private Ui::OptionsDialog
 {
 	Q_OBJECT
-	QLabel* label;
-public:
-	QMdiArea *MDIArea;
-	
-	
-    QMyMainWindow();
-	 ~QMyMainWindow();
-    void CreateActions();
+	private:
+
+	public:
+		QOptionsDialog(QWidget *parent = 0);
+
+		~QOptionsDialog();
+//		void SetupControls(bool setI=true);
 	 
 	public slots:
-		void PressButtonClicked();	 
-		void AboutButtonClicked();	 
-		void TempButtonClicked();	 
-		void OptionsButtonClicked();	 
+	
 };
 
 #endif

@@ -1,0 +1,138 @@
+<ui version="4.0" >
+ <class>OptionsDialog</class>
+ <widget class="QDialog" name="OptionsDialog" >
+  <property name="windowModality" >
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>556</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Настройки</string>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox" >
+   <property name="geometry" >
+    <rect>
+     <x>188</x>
+     <y>447</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons" >
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox" >
+   <property name="geometry" >
+    <rect>
+     <x>8</x>
+     <y>12</y>
+     <width>297</width>
+     <height>385</height>
+    </rect>
+   </property>
+   <property name="title" >
+    <string>Список компаний</string>
+   </property>
+   <widget class="QTableWidget" name="tableWidget" >
+    <property name="geometry" >
+     <rect>
+      <x>6</x>
+      <y>15</y>
+      <width>273</width>
+      <height>325</height>
+     </rect>
+    </property>
+    <property name="columnCount" >
+     <number>2</number>
+    </property>
+    <column>
+     <property name="text" >
+      <string>Наименование</string>
+     </property>
+    </column>
+    <column>
+     <property name="text" >
+      <string>ИНН</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton" >
+    <property name="geometry" >
+     <rect>
+      <x>14</x>
+      <y>345</y>
+      <width>80</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Добавить</string>
+    </property>
+    <property name="flat" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2" >
+    <property name="geometry" >
+     <rect>
+      <x>110</x>
+      <y>345</y>
+      <width>80</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Удалить</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>OptionsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>OptionsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

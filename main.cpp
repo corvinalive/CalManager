@@ -31,13 +31,37 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include <QWidget>
-
-
+//#include <QSettings>
+//#include <QList>
+	
+/*struct Login{
+	QString userName;
+	QString password;
+};	*/
  int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	QMyMainWindow *mw = new QMyMainWindow();
+	/*QSettings settings("calmanager.ini", QSettings::IniFormat);
+
 	
+	QList<Login> logins;
+	
+	Login l;
+	l.userName=QObject::trUtf8("Рускиие");
+	l.password="6666666";
+	logins<<l;
+	QString ss=QObject::trUtf8("Рускиие");
+	settings.setValue("valuee",ss.toAscii());
+
+/*	settings.beginWriteArray("logins");
+	for (int i = 0; i < logins.size(); ++i) {
+		settings.setArrayIndex(i);
+		settings.setValue("userName", logins.value(i).userName);
+		settings.setValue("password", logins.value(i).password);
+	}
+	settings.endArray();
+*/
 	mw->show();
 	
 	return app.exec();

@@ -40,7 +40,7 @@ private:
 	double klass;
 	double maxp;	//максимальная погрешность
 	double maxv;	//max вариация	
-	QLabel* label;
+	//QLabel* label;
 	bool kpa_changed;
 	bool mm_changed;
 

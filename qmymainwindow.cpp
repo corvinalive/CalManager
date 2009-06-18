@@ -20,6 +20,7 @@
 #include "qmymainwindow.h"
 #include "qpresswidget.h"
 #include "qtempwidget.h"
+#include "qoptions.h"
 
 
 #include <QLabel>
@@ -50,7 +51,15 @@ void QMyMainWindow::PressButtonClicked()
 	QPressWidget *pw=new QPressWidget(MDIArea);
 	MDIArea->addSubWindow(pw);
 	pw->show();
-	pw->move(40,40);
+//	pw->move(40,40);
+}
+//-----------------------------------------------------------------------------
+void QMyMainWindow::OptionsButtonClicked()
+{
+	QOptionsDialog *pw=new QOptionsDialog(this);
+	//MDIArea->addSubWindow(pw);
+	pw->show();
+//	pw->move(40,40);
 }
 //-----------------------------------------------------------------------------
 void QMyMainWindow::TempButtonClicked()
@@ -58,7 +67,7 @@ void QMyMainWindow::TempButtonClicked()
 	QTempWidget *pw=new QTempWidget(MDIArea);
 	MDIArea->addSubWindow(pw);
 	pw->show();
-	pw->move(40,40);
+//	pw->move(40,40);
 }
 //-----------------------------------------------------------------------------
 void QMyMainWindow::CreateActions()
@@ -74,6 +83,10 @@ void QMyMainWindow::CreateActions()
 	newAct->setStatusTip(trUtf8("Поверка датчика температуры"));
 	connect(tAct, SIGNAL(triggered()), this, SLOT(TempButtonClicked()));
 	
+	QAction* optionsAct = new QAction(trUtf8("Настройки"), this);
+	//aboutAct->setShortcut(tr("F1"));
+	connect(optionsAct, SIGNAL(triggered()), this, SLOT(OptionsButtonClicked()));
+	
 	QAction* aboutAct = new QAction(trUtf8("О программе..."), this);
 	aboutAct->setShortcut(tr("F1"));
 	connect(aboutAct, SIGNAL(triggered()), this, SLOT(AboutButtonClicked()));
@@ -81,6 +94,7 @@ void QMyMainWindow::CreateActions()
 	QToolBar* fileToolBar = addToolBar(trUtf8("File"));
 	fileToolBar->addAction(newAct);	
 	fileToolBar->addAction(tAct);	
+	fileToolBar->addAction(optionsAct);	
 	fileToolBar->addAction(aboutAct);	
 	
 }
