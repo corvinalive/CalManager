@@ -30,7 +30,13 @@ QOptionsDialog::QOptionsDialog(QWidget *parent)
 	CompanyTableWidget->setColumnWidth(1,150);
 	CompanyTableWidget->setColumnWidth(0,350);
 	
-	connect(AddButton, SIGNAL(clicked(bool)), this, SLOT(add_button_clicked(bool)));	connect(DeleteButton, SIGNAL(clicked(bool)), this, SLOT(delete_button_clicked(bool)));	connect(buttonBox, SIGNAL(accepted()), this, SLOT(ok_button_clicked()));
+	connect(AddButton, SIGNAL(clicked(bool)), this, SLOT(add_button_clicked(bool)));
+	connect(DeleteButton, SIGNAL(clicked(bool)), this, SLOT(delete_button_clicked(bool)));
+	
+	connect(AddPovButton, SIGNAL(clicked(bool)), this, SLOT(pov_add_button_clicked(bool)));
+	connect(DeletePovButton, SIGNAL(clicked(bool)), this, SLOT(pov_delete_button_clicked(bool)));	
+	
+	connect(buttonBox, SIGNAL(accepted()), this, SLOT(ok_button_clicked()));
 }
 //-----------------------------------------------------------------------------
 QOptionsDialog::~QOptionsDialog()
@@ -54,7 +60,14 @@ void QOptionsDialog::ok_button_clicked ()
 		comp.INN=CompanyTableWidget->item(i,1)->text();
 		QMyMainWindow::Companies.append(comp);
 		}
-	options_accepted();
+	//Запись списка поверителей
+	c=PovTableWidget->rowCount();
+	QMyMainWindow::Poveriteli.clear();
+		for (int i = 0; i < c ; ++i)
+		{
+			QMyMainWindow::Poveriteli.append(PovTableWidget->item(i,0)->text());
+		}
+		options_accepted();
 }
 //-----------------------------------------------------------------------------
 void QOptionsDialog::Prepare()
@@ -79,6 +92,19 @@ void QOptionsDialog::Prepare()
 			CompanyTableWidget->setItem(i,1,item);
 			}
 		}
+	//Заполнение списка поверителй
+	PovTableWidget->setRowCount(QMyMainWindow::Poveriteli.size());
+	c=QMyMainWindow::Poveriteli.size();
+	for (int i = 0; i < c ; ++i)
+		{
+			if(PovTableWidget->item(i,0)!=0)
+				PovTableWidget->item(i,0)->setText(QMyMainWindow::Poveriteli.value(i));
+			else
+			{
+				QTableWidgetItem*  item=new QTableWidgetItem(QMyMainWindow::Poveriteli.value(i));
+				PovTableWidget->setItem(i,0,item);
+			}
+		}
 }
 //-----------------------------------------------------------------------------
 void QOptionsDialog::delete_button_clicked (bool)
@@ -87,7 +113,17 @@ void QOptionsDialog::delete_button_clicked (bool)
 	CompanyTableWidget->removeRow(i);
 }
 //-----------------------------------------------------------------------------
+void QOptionsDialog::pov_delete_button_clicked (bool)
+{
+	int i = PovTableWidget->currentRow();
+	PovTableWidget->removeRow(i);
+}
 //-----------------------------------------------------------------------------
+void QOptionsDialog::pov_add_button_clicked (bool)
+{
+	PovTableWidget->setRowCount(PovTableWidget->rowCount()+1);
+}
+//-----------------------------------------------------------------------------//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
