@@ -21,7 +21,8 @@
 #define QOPTIONS_H
 
 #include <QDialog>
-
+#include <QList>
+#include <QString>
 #include "ui_options.h"
 
 
@@ -30,18 +31,27 @@
 
 	@author Зонов В. М. <corvinalive@list.ru>
  */
+
+
+
 class QOptionsDialog : public QDialog, private Ui::OptionsDialog
 {
-	Q_OBJECT
-	private:
+Q_OBJECT
+private:
 
-	public:
+public:
 		QOptionsDialog(QWidget *parent = 0);
 
 		~QOptionsDialog();
-//		void SetupControls(bool setI=true);
+    void Prepare();
 	 
-	public slots:
+public slots:
+	void add_button_clicked (bool);
+	void delete_button_clicked (bool);
+	void ok_button_clicked ();
+
+signals:
+	void options_accepted();
 	
 };
 

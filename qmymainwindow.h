@@ -21,9 +21,15 @@
 #define QMYMAINWINDOW_H
 
 #include <QMainWindow>
+#include "qoptions.h"
 
 class QLabel;
 class QMdiArea;
+
+struct Company{
+	QString Name;
+	QString INN;
+};
 /**
 	@author Зонов В. М. <corvinalive@list.ru>
 */
@@ -31,6 +37,7 @@ class QMyMainWindow : public QMainWindow
 {
 	Q_OBJECT
 	QLabel* label;
+	QOptionsDialog *OptionsDialog;
 public:
 	QMdiArea *MDIArea;
 	
@@ -38,12 +45,19 @@ public:
     QMyMainWindow();
 	 ~QMyMainWindow();
     void CreateActions();
+    void SaveSetting();
+    void LoadSetting();
+ 	static QList<Company> Companies;
+	static QStringList Poveriteli;
+	static QStringList PModeli;
+	static QStringList tModeli;
 	 
 	public slots:
 		void PressButtonClicked();	 
 		void AboutButtonClicked();	 
 		void TempButtonClicked();	 
 		void OptionsButtonClicked();	 
+		void OptionsDialog_accepted();
 };
 
 #endif

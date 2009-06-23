@@ -29,6 +29,13 @@
 #include <QToolButton>
 #include <QAction>
 #include <QMessageBox>
+#include <QSettings>
+
+QList<Company> QMyMainWindow::Companies;
+
+QStringList QMyMainWindow::Poveriteli;
+QStringList QMyMainWindow::PModeli;
+QStringList QMyMainWindow::tModeli;
 
 //-----------------------------------------------------------------------------
 QMyMainWindow::QMyMainWindow():QMainWindow()
@@ -37,13 +44,18 @@ QMyMainWindow::QMyMainWindow():QMainWindow()
 	MDIArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 	MDIArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 	setCentralWidget(MDIArea);
+
+	OptionsDialog=new QOptionsDialog(this);
+	connect(OptionsDialog, SIGNAL(options_accepted()), this, SLOT(OptionsDialog_accepted()));
 	
 	CreateActions();
-	setWindowTitle(trUtf8("Поверка датчиков давления"));
+	LoadSetting();
 }
 //-----------------------------------------------------------------------------
 QMyMainWindow::~QMyMainWindow()
 {
+	delete OptionsDialog;
+	SaveSetting();
 }
 //-----------------------------------------------------------------------------
 void QMyMainWindow::PressButtonClicked()
@@ -56,10 +68,8 @@ void QMyMainWindow::PressButtonClicked()
 //-----------------------------------------------------------------------------
 void QMyMainWindow::OptionsButtonClicked()
 {
-	QOptionsDialog *pw=new QOptionsDialog(this);
-	//MDIArea->addSubWindow(pw);
-	pw->show();
-//	pw->move(40,40);
+	OptionsDialog->Prepare();
+	OptionsDialog->show();
 }
 //-----------------------------------------------------------------------------
 void QMyMainWindow::TempButtonClicked()
@@ -103,5 +113,60 @@ void QMyMainWindow::AboutButtonClicked()
 {
 	QMessageBox::about(this, trUtf8("Поверка датчиков давления и температуры"),
 		trUtf8("Программа для обработки данных и формирования свидетельств и протоколов поверки датчиков давления и температуры.\n\nАвтор: Зонов В. М.\n\ne-mail: corvinalive@list.ru\n\nЛицензия: GPL v.2\n\nВерсия: 0.3"));
+}
+//-----------------------------------------------------------------------------
+void QMyMainWindow::LoadSetting()
+{
+    /// @todo implement me
+	QSettings settings("calmanager.ini", QSettings::IniFormat);
+	int size = settings.beginReadArray("companies");
+	Companies.clear();
+ 	for (int i = 0; i < size; ++i)
+		{
+     	settings.setArrayIndex(i);
+     	Company login;
+     	login.Name = settings.value("Name").toString();
+     	login.INN= settings.value("INN").toString();
+     	Companies.append(login);
+ 		}
+ 	settings.endArray();
+
+	size = settings.beginReadArray("poveriteli");
+	Poveriteli.clear();
+ 	for (int i = 0; i < size; ++i)
+		{
+     	settings.setArrayIndex(i);
+     	QString login;
+     	login = settings.value("FIO").toString();
+     	Poveriteli.append(login);
+ 		}
+ 	settings.endArray();
+}
+//-----------------------------------------------------------------------------
+void QMyMainWindow::SaveSetting()
+{
+    /// @todo implement me
+	QSettings settings("calmanager.ini", QSettings::IniFormat);
+	settings.beginWriteArray("companies");
+	for (int i = 0; i < QMyMainWindow::Companies.size(); ++i)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("Name", QMyMainWindow::Companies.value(i).Name);
+		settings.setValue("INN", QMyMainWindow::Companies.value(i).INN);
+	}
+	settings.endArray();
+	
+	settings.beginWriteArray("poveriteli");
+	for (int i = 0; i < QMyMainWindow::Poveriteli.size(); ++i)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("FIO", QMyMainWindow::Poveriteli.value(i));
+	}
+	settings.endArray();
+}
+//-----------------------------------------------------------------------------
+void QMyMainWindow::OptionsDialog_accepted()
+{
+	SaveSetting();
 }
 //-----------------------------------------------------------------------------
