@@ -18,13 +18,13 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "qpresswidget.h"
+#include "qmymainwindow.h"
 #include <QLabel>
 #include <QFile>
 #include <QMessageBox>
 #include <QProcess>
 #include <QDir>
 #include <QTextStream>
-#include <QSettings>
 
 //-----------------------------------------------------------------------------
 QPressWidget::QPressWidget(QWidget *parent)
@@ -74,72 +74,43 @@ QPressWidget::~QPressWidget()
 /*!
     \fn QPressWidget::SetupControls()
  */
-struct Company{
-		QString Name;
-		QString INN;
-	};
 
 void QPressWidget::SetupControls(bool )
 {
     /// @todo implement me
 	//Заполняем список компаний и их ИНН
 
-	QSettings settings("calmanager.ini", QSettings::IniFormat);
+
 	
 	OwnerBox->clear();
 	OwnerBox->addItem("");
+	
+	int c=QMyMainWindow::Companies.size();
+	for(int i=0 ;i<c;i++)
+		{
+		OwnerBox->addItem(QMyMainWindow::Companies.value(i).Name,QMyMainWindow::Companies.value(i).INN);
+		}
 		
-	int size = settings.beginReadArray("companies");
-	QString name;
-	QString inn;
-	QByteArray ba1,ba2;
-	for (int i = 0; i < size; ++i) {
-		settings.setArrayIndex(i);
-		ba1 = settings.value("Name").toByteArray();
-		ba2 = settings.value("INN").toByteArray();
-		name=QString::fromLocal8Bit(ba1.data());
-		OwnerBox->addItem(name,inn);
-	}
-	settings.endArray();	
-//	Заполняем список моделей датчиков и их методик поверки, межповерочный интвервал
 
+	//	Заполняем список моделей датчиков
 	NameBox->clear();
 	NameBox->addItem("");
-		
-/*	file.setFileName("press-list.txt");
-	if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-	{
-		QTextStream in(&file);
-		while (!in.atEnd())
+	c=QMyMainWindow::PModeli.size();
+	for(int i=0 ;i<c;i++)
 		{
-			QString line = in.readLine();
-			line.trimmed();
-			//check the line
-			if(line[0]=='#')
-				continue;
-			if(line.isEmpty())
-				continue;
-			int i=line.indexOf('\t');
-			QString model;
-			if(i==-1)
-			{
-				model=line;
-				NameBox->addItem(model);
-			}
-			else
-			{
-				model=line;
-				model.remove(i,100000);
-				QString mi=line;
-				//остались методики и интервал
-				mi.remove(0,i+1);
-				i=mi.indexOf('\t');
-//				OwnerBox->addItem(name,inn);
-			}
-			
+		NameBox->addItem(QMyMainWindow::PModeli.value(i));
 		}
-	}*/
+
+	//	Заполняем список PoverBox
+	PoverBox->clear();
+	PoverBox->addItem("");
+	c=QMyMainWindow::Poveriteli.size();
+	for(int i=0 ;i<c;i++)
+		{
+		PoverBox->addItem(QMyMainWindow::Poveriteli.value(i));
+		}
 	
+		
 	//read min % max
 	min=minBox->value();
 	max=maxBox->value();
@@ -732,6 +703,9 @@ void QPressWidget::Print()
 
 	ss.setNum(max);
 	str.replace(QString("max"), ss);
+	
+	ss.setNum(min);
+	str.replace(QString("min"), ss);
 	
 	//FILL TABLE
 	
