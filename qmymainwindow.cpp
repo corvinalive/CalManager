@@ -133,14 +133,36 @@ void QMyMainWindow::LoadSetting()
 
 	size = settings.beginReadArray("poveriteli");
 	Poveriteli.clear();
- 	for (int i = 0; i < size; ++i)
-		{
-     	settings.setArrayIndex(i);
-     	QString login;
-     	login = settings.value("FIO").toString();
-     	Poveriteli.append(login);
- 		}
- 	settings.endArray();
+	for (int i = 0; i < size; ++i)
+	{
+		settings.setArrayIndex(i);
+		QString login;
+		login = settings.value("FIO").toString();
+		Poveriteli.append(login);
+	}
+	settings.endArray();
+	
+	size = settings.beginReadArray("PModeli");
+	PModeli.clear();
+	for (int i = 0; i < size; ++i)
+	{
+		settings.setArrayIndex(i);
+		QString login;
+		login = settings.value("FIO").toString();
+		PModeli.append(login);
+	}
+	settings.endArray();
+	
+	size = settings.beginReadArray("tModeli");
+	tModeli.clear();
+	for (int i = 0; i < size; ++i)
+	{
+		settings.setArrayIndex(i);
+		QString login;
+		login = settings.value("FIO").toString();
+		tModeli.append(login);
+	}
+	settings.endArray();
 }
 //-----------------------------------------------------------------------------
 void QMyMainWindow::SaveSetting()
@@ -161,6 +183,22 @@ void QMyMainWindow::SaveSetting()
 	{
 		settings.setArrayIndex(i);
 		settings.setValue("FIO", QMyMainWindow::Poveriteli.value(i));
+	}
+	settings.endArray();
+	
+	settings.beginWriteArray("tModeli");
+	for (int i = 0; i < QMyMainWindow::tModeli.size(); ++i)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("FIO", QMyMainWindow::tModeli.value(i));
+	}
+	settings.endArray();
+	
+	settings.beginWriteArray("PModeli");
+	for (int i = 0; i < QMyMainWindow::PModeli.size(); ++i)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("FIO", QMyMainWindow::PModeli.value(i));
 	}
 	settings.endArray();
 }

@@ -36,6 +36,13 @@ QOptionsDialog::QOptionsDialog(QWidget *parent)
 	connect(AddPovButton, SIGNAL(clicked(bool)), this, SLOT(pov_add_button_clicked(bool)));
 	connect(DeletePovButton, SIGNAL(clicked(bool)), this, SLOT(pov_delete_button_clicked(bool)));	
 	
+	connect(PAddButton, SIGNAL(clicked(bool)), this, SLOT(p_add_button_clicked(bool)));
+	connect(PDeleteButton, SIGNAL(clicked(bool)), this, SLOT(p_delete_button_clicked(bool)));	
+	
+	connect(tAddButton, SIGNAL(clicked(bool)), this, SLOT(t_add_button_clicked(bool)));
+	connect(tDeleteButton, SIGNAL(clicked(bool)), this, SLOT(t_delete_button_clicked(bool)));	
+	
+	
 	connect(buttonBox, SIGNAL(accepted()), this, SLOT(ok_button_clicked()));
 }
 //-----------------------------------------------------------------------------
@@ -61,12 +68,32 @@ void QOptionsDialog::ok_button_clicked ()
 		QMyMainWindow::Companies.append(comp);
 		}
 	//Запись списка поверителей
-	c=PovTableWidget->rowCount();
-	QMyMainWindow::Poveriteli.clear();
+		c=PovTableWidget->rowCount();
+		QMyMainWindow::Poveriteli.clear();
 		for (int i = 0; i < c ; ++i)
 		{
 			QMyMainWindow::Poveriteli.append(PovTableWidget->item(i,0)->text());
 		}
+
+		
+		//Запись списка PModeli
+		c=PTableWidget->rowCount();
+		QMyMainWindow::PModeli.clear();
+		for (int i = 0; i < c ; ++i)
+		{
+			QMyMainWindow::PModeli.append(PTableWidget->item(i,0)->text());
+		}
+
+		
+		//Запись списка tModeli
+		c=tTableWidget->rowCount();
+		QMyMainWindow::tModeli.clear();
+		for (int i = 0; i < c ; ++i)
+		{
+			QMyMainWindow::tModeli.append(tTableWidget->item(i,0)->text());
+		}
+		
+		
 		options_accepted();
 }
 //-----------------------------------------------------------------------------
@@ -105,6 +132,39 @@ void QOptionsDialog::Prepare()
 				PovTableWidget->setItem(i,0,item);
 			}
 		}
+		
+		
+	//Заполнение списка PModeli
+		PTableWidget->setRowCount(QMyMainWindow::PModeli.size());
+		c=QMyMainWindow::PModeli.size();
+		for (int i = 0; i < c ; ++i)
+		{
+			if(PTableWidget->item(i,0)!=0)
+				PTableWidget->item(i,0)->setText(QMyMainWindow::PModeli.value(i));
+			else
+			{
+				QTableWidgetItem*  item=new QTableWidgetItem(QMyMainWindow::PModeli.value(i));
+				PTableWidget->setItem(i,0,item);
+			}
+		}
+				
+		
+			//Заполнение списка tModeli
+		tTableWidget->setRowCount(QMyMainWindow::tModeli.size());
+		c=QMyMainWindow::tModeli.size();
+		for (int i = 0; i < c ; ++i)
+		{
+			if(tTableWidget->item(i,0)!=0)
+				tTableWidget->item(i,0)->setText(QMyMainWindow::tModeli.value(i));
+			else
+			{
+				QTableWidgetItem*  item=new QTableWidgetItem(QMyMainWindow::tModeli.value(i));
+				tTableWidget->setItem(i,0,item);
+			}
+		}
+		
+		
+		
 }
 //-----------------------------------------------------------------------------
 void QOptionsDialog::delete_button_clicked (bool)
@@ -122,6 +182,30 @@ void QOptionsDialog::pov_delete_button_clicked (bool)
 void QOptionsDialog::pov_add_button_clicked (bool)
 {
 	PovTableWidget->setRowCount(PovTableWidget->rowCount()+1);
+}
+//-----------------------------------------------------------------------------
+
+
+void QOptionsDialog::p_delete_button_clicked (bool)
+{
+	int i = PTableWidget->currentRow();
+	PTableWidget->removeRow(i);
+}
+//-----------------------------------------------------------------------------
+void QOptionsDialog::p_add_button_clicked (bool)
+{
+	PTableWidget->setRowCount(PTableWidget->rowCount()+1);
+}
+//-----------------------------------------------------------------------------//-------------
+void QOptionsDialog::t_delete_button_clicked (bool)
+{
+	int i = tTableWidget->currentRow();
+	tTableWidget->removeRow(i);
+}
+//-----------------------------------------------------------------------------
+void QOptionsDialog::t_add_button_clicked (bool)
+{
+	tTableWidget->setRowCount(tTableWidget->rowCount()+1);
 }
 //-----------------------------------------------------------------------------//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

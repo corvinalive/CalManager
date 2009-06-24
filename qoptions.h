@@ -50,6 +50,13 @@ public slots:
 	void delete_button_clicked (bool);
 	void pov_add_button_clicked (bool);
 	void pov_delete_button_clicked (bool);
+	
+	void p_add_button_clicked (bool);
+	void p_delete_button_clicked (bool);
+	
+	void t_add_button_clicked (bool);
+	void t_delete_button_clicked (bool);
+	
 	void ok_button_clicked ();
 
 signals:
