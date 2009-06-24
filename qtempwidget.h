@@ -43,6 +43,9 @@ private:
 	double ti[6];
 	double td[6];
 	double d[6];
+	bool kpa_changed;
+	bool mm_changed;
+
 public:
     QTempWidget(QWidget *parent = 0);
 
@@ -51,11 +54,14 @@ public:
     void Calculate();
     void Print();
 	 
-	public slots:
+public slots:
 	 void ivalueChanged (double);
 	 void rangevalueChanged (double);
 	 void print_button_clicked (bool);
-	private:
+	 void atmkpavalueChanged(double);
+	 void	atmmmvalueChanged(double);
+	 void ownercurrentIndexChanged ( int index );
+private:
     void OutToLabel(QLabel* l,double d, double dp);
 };
 

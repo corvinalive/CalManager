@@ -18,10 +18,12 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "qtempwidget.h"
+#include "qmymainwindow.h"
 #include <QLabel>
 #include <QFile>
 #include <QMessageBox>
 #include <QProcess>
+#include <QDir>
 
 //-----------------------------------------------------------------------------
 QTempWidget::QTempWidget(QWidget *parent)
@@ -47,8 +49,15 @@ QTempWidget::QTempWidget(QWidget *parent)
 	connect(minBox, SIGNAL(valueChanged (double)), this, SLOT(rangevalueChanged(double)));
 	connect(pmaxBox, SIGNAL(valueChanged (double)), this, SLOT(rangevalueChanged(double)));
 	connect(pminBox, SIGNAL(valueChanged (double)), this, SLOT(rangevalueChanged(double)));
-
+	
 	connect(PrintButton, SIGNAL(clicked(bool)), this, SLOT(print_button_clicked(bool)));
+	
+	kpa_changed=false;
+	mm_changed=false;
+	connect(atmkpa_box, SIGNAL(valueChanged (double)), this, SLOT(atmkpavalueChanged(double)));
+	connect(atmmm_box, SIGNAL(valueChanged (double)), this, SLOT(atmmmvalueChanged(double)));
+	connect(OwnerBox, SIGNAL(currentIndexChanged(int)),this, SLOT(ownercurrentIndexChanged(int)));
+	
 	Calculate();
 }
 //-----------------------------------------------------------------------------
@@ -71,6 +80,35 @@ void QTempWidget::SetupControls(bool )
 	
 	//set current date
 	dateEdit->setDate(QDate::currentDate());
+
+	OwnerBox->clear();
+	OwnerBox->addItem("");
+	
+	int c=QMyMainWindow::Companies.size();
+	for(int i=0 ;i<c;i++)
+		{
+		OwnerBox->addItem(QMyMainWindow::Companies.value(i).Name,QMyMainWindow::Companies.value(i).INN);
+		}
+		
+
+	//	Заполняем список моделей датчиков
+	NameBox->clear();
+	NameBox->addItem("");
+	c=QMyMainWindow::tModeli.size();
+	for(int i=0 ;i<c;i++)
+		{
+		NameBox->addItem(QMyMainWindow::tModeli.value(i));
+		}
+
+	//	Заполняем список PoverBox
+	PoverBox->clear();
+	PoverBox->addItem("");
+	c=QMyMainWindow::Poveriteli.size();
+	for(int i=0 ;i<c;i++)
+		{
+		PoverBox->addItem(QMyMainWindow::Poveriteli.value(i));
+		}
+
 	
 	double vv=16;
 
@@ -329,6 +367,14 @@ void QTempWidget::Print()
 		ss=QObject::trUtf8("<text:s text:c=\"20\"/>");
 	str.replace(QString("MONTH"),ss);
 
+	//add year
+	ss=dateEdit->date().toString("yyyy");
+	str.replace(QString("ywhen"),ss);
+	
+	int yearbefore=dateEdit->date().year()+1;
+	ss.setNum(yearbefore);
+	str.replace(QString("ybefore"), ss);	
+
 	str.replace(QString("IPTYPE"),NameBox->currentText());
 	
 	str.replace(QString("KLEIMO"),KleimoEdit->text());
@@ -339,11 +385,13 @@ void QTempWidget::Print()
 	
 	str.replace(QString("OWNER"), OwnerBox->currentText());
 	
-	str.replace(QString("TVOS"), VosduhEdit->text());
+	str.replace(QString("TVOS"), tvos_box->text());
 	
-	str.replace(QString("ATMPRESS"), AtmEdit->text());
+	str.replace(QString("ATMPRESS"), atmkpa_box->text());
 
-	str.replace(QString("VLAGA"), WaterEdit->text());
+	str.replace(QString("inn-inn-inn"), INNEdit->text());
+
+	str.replace(QString("VLAGA"), water_box->text());
 	
 	str.replace(QString("POVER"), PoverBox->currentText());
 	
@@ -487,12 +535,72 @@ void QTempWidget::Print()
 	}
 	delete unZip;
 
-	ss=QObject::trUtf8("ДТ ");
-	ss+=(QDateTime::currentDateTime ().toString("yyyy MM dd hh mm ss")+".odt");
-	QFile::copy("temperature.temp",ss);	
-	
+//	ss=QObject::trUtf8("ДТ ");
+//	ss+=(QDateTime::currentDateTime ().toString("yyyy MM dd hh mm ss")+".odt");
+//	QFile::copy("temperature.temp",ss);	
+
+	//create new directory
+	QDir dir;
+	bool DirOk=false;
+	ss=(QDateTime::currentDateTime ().toString("yyyy MM dd"));
+	QString ss1=dir.path();
+	ss1+=QObject::trUtf8("/");
+	ss1+=ss;
 	QMessageBox msgBox;
+	//if(dir.exists())
+			
+	DirOk=dir.mkpath(ss);
+	
+	if(DirOk)
+	{
+		ss1=ss+QObject::trUtf8("/ДТ ");
+		ss1+=(QDateTime::currentDateTime ().toString("hh mm ss")+".odt");
+	}
+	else
+	{
+		ss1=QObject::trUtf8("ДТ ");
+		ss1+=(QDateTime::currentDateTime ().toString("yyyy MM dd hh mm ss")+".odt");
+	}
+	QFile::copy("temperature.temp",ss1);	
+	QFile::remove("temperature.temp");
+	QFile::remove("content.xml");
+	
+	
 	msgBox.setText(QObject::trUtf8("Протокол успешно сформирован"));
 	msgBox.exec();
 	
 }
+//-----------------------------------------------------------------------------
+void QTempWidget::atmkpavalueChanged (double kpa)
+{
+	if(mm_changed)
+	{
+		mm_changed=false;
+		return;
+	}
+	kpa_changed=true;
+	atmmm_box->setValue(kpa*7.50064);
+}
+//-----------------------------------------------------------------------------
+void QTempWidget::atmmmvalueChanged (double mm)
+{
+	if(kpa_changed)
+	{
+		kpa_changed=false;
+		return;
+	}
+	double kpa=mm;
+	kpa=kpa/7.50064;
+	mm_changed=true;
+	atmkpa_box->setValue(kpa);
+}
+//-----------------------------------------------------------------------------
+void QTempWidget::ownercurrentIndexChanged ( int index )
+{
+	if(index>=0)
+	{
+		QVariant v=OwnerBox->itemData(index);
+		INNEdit->setText(v.toString());
+	}
+}
+//-----------------------------------------------------------------------------

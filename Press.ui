@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>827</width>
+    <width>870</width>
     <height>400</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>724</width>
+    <width>870</width>
     <height>400</height>
    </size>
   </property>
@@ -125,10 +125,10 @@ p, li { white-space: pre-wrap; }
            <number>1</number>
           </property>
           <property name="minimum">
-           <double>84.000000000000000</double>
+           <double>0.000000000000000</double>
           </property>
           <property name="maximum">
-           <double>106.700000000000003</double>
+           <double>200.000000000000000</double>
           </property>
           <property name="singleStep">
            <double>0.500000000000000</double>
@@ -144,10 +144,10 @@ p, li { white-space: pre-wrap; }
            <number>0</number>
           </property>
           <property name="minimum">
-           <double>630.000000000000000</double>
+           <double>0.000000000000000</double>
           </property>
           <property name="maximum">
-           <double>800.000000000000000</double>
+           <double>2000.000000000000000</double>
           </property>
           <property name="singleStep">
            <double>1.000000000000000</double>
@@ -216,10 +216,10 @@ p, li { white-space: pre-wrap; }
            <number>0</number>
           </property>
           <property name="minimum">
-           <double>30.000000000000000</double>
+           <double>0.000000000000000</double>
           </property>
           <property name="maximum">
-           <double>80.000000000000000</double>
+           <double>100.000000000000000</double>
           </property>
           <property name="singleStep">
            <double>1.000000000000000</double>
@@ -348,7 +348,7 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -543,7 +543,7 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>420</x>
@@ -572,7 +572,7 @@ p, li { white-space: pre-wrap; }
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>418</x>
@@ -628,7 +628,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>2</x>
          <y>36</y>
-         <width>801</width>
+         <width>841</width>
          <height>280</height>
         </rect>
        </property>

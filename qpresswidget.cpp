@@ -658,7 +658,6 @@ void QPressWidget::Print()
 	str.replace(QString("owner"), OwnerBox->currentText());
 	str.replace(QString("inn-inn-inn"), INNEdit->text());
 	
-//str.replace(QString("vosduh"), VosduhEdit->text());
 	ss="";
 	ss.setNum(tvos_box->value());
 	str.replace(QString("vosduh"), ss);	
@@ -677,30 +676,6 @@ void QPressWidget::Print()
 
 	str.replace(QString("unit"), UnitBox->currentText());
 	
-/*
-	dy	day
-	month
-	name
-	kleimo
-	serial
-	klass
-	owner
-	vosduh
-	atm
-	water
-	pover	
-	ma-xd
-	m-axv
-	
-	tablX1 - значение поверяемой величины
-	Х2	- расчетный ток
-	Х3	-	прямой ход
-	4	обратный ход
-	5, 6 - погршеност
-	7 - вариация
-	*/
-	
-
 	ss.setNum(max);
 	str.replace(QString("max"), ss);
 	
