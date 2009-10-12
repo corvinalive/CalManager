@@ -657,7 +657,8 @@ void QPressWidget::Print()
 
 	str.replace(QString("owner"), OwnerBox->currentText());
 	str.replace(QString("inn-inn-inn"), INNEdit->text());
-	
+        str.replace(QString("metodika"), MIBox->currentText());
+
 	ss="";
 	ss.setNum(tvos_box->value());
 	str.replace(QString("vosduh"), ss);	
