@@ -24,7 +24,7 @@ import struct, sys
 from PySide import QtCore, QtGui
 from mymainwindow import Ui_MyMainWindow
 from temp_unit import TempForm
-import ConfigParser
+import commondata
 
 class MyMainWindow(QtGui.QMainWindow):
            
@@ -35,51 +35,11 @@ class MyMainWindow(QtGui.QMainWindow):
         self.setCentralWidget(self.ui.mdiArea);
         self.connect(self.ui.Tempaction, QtCore.SIGNAL("triggered()"), self.pushButtonTemp)
         self.connect(self.ui.Aboutaction, QtCore.SIGNAL("triggered()"), self.aboutButton)
-        self.LoadSetting()
+        self.Commondata = commondata.Commondata()
     
-    def LoadSetting(self):
-        print "Load setting"
-        qs = QtCore.QSettings("calmanager.ini", QtCore.QSettings.IniFormat)
-        size = qs.beginReadArray("companies")
-        self.Companies=[]
-        for i in range(size):
-            qs.setArrayIndex(i)
-            Name = qs.value("Name")
-            INN= qs.value("INN")
-            print Name, INN
-            self.Companies.append((Name,INN))
-        qs.endArray()
-
-        size = qs.beginReadArray("poveriteli")
-        self.Poveriteli=[]
-        for i in range(size):
-            qs.setArrayIndex(i)
-            Name = qs.value("FIO")
-            print Name
-            self.Poveriteli.append(Name)
-        qs.endArray()
-
-        size = qs.beginReadArray("PModeli")
-        self.PModeli=[]
-        for i in range(size):
-            qs.setArrayIndex(i)
-            Name = qs.value("FIO")
-            print Name
-            self.PModeli.append(Name)
-        qs.endArray()
-
-        size = qs.beginReadArray("tModeli")
-        self.tModeli=[]
-        for i in range(size):
-            qs.setArrayIndex(i)
-            Name = qs.value("FIO")
-            print Name
-            self.tModeli.append(Name)
-        qs.endArray()
-
       
     def pushButtonTemp(self):
-        tempform1 = TempForm(self)
+        tempform1 = TempForm(self.Commondata,self)
         self.ui.mdiArea.addSubWindow(tempform1)
         tempform1.show()
     def aboutButton(self):
