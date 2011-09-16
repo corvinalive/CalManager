@@ -37,7 +37,7 @@ class TempForm(QtGui.QWidget):
         self.i = [1,2,3,4,5,6]
         self.td = [1,2,3,4,5,6]
         self.d = [1,2,3,4,5,6]
-        self.SetupControls()
+        self.SetupControls(First=True)
         self.connect(self.ui.i1, QtCore.SIGNAL("valueChanged(double)"), self.ivalueChanged)
         self.connect(self.ui.i2, QtCore.SIGNAL("valueChanged(double)"), self.ivalueChanged)
         self.connect(self.ui.i3, QtCore.SIGNAL("valueChanged(double)"), self.ivalueChanged)
@@ -67,30 +67,32 @@ class TempForm(QtGui.QWidget):
 	
 
     
-    def SetupControls(self):
+    def SetupControls(self, First = False):
         self.min = self.ui.minBox.value()
         self.max = self.ui.maxBox.value()
         
         self.pmin = self.ui.pminBox.value()
         self.pmax= self.ui.pmaxBox.value()
         #set current date
-        self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
+        if First:
+            self.ui.dateEdit.setDate(QtCore.QDate.currentDate())
         
-        self.ui.OwnerBox.clear()
-        self.ui.OwnerBox.addItem("")
-        for i in self.Commondata.Companies:
-            self.ui.OwnerBox.addItem(i[0],i[1])
+        if First:
+            self.ui.OwnerBox.clear()
+            self.ui.OwnerBox.addItem("")
+            for i in self.Commondata.Companies:
+                self.ui.OwnerBox.addItem(i[0],i[1])
 
-        self.ui.NameBox.clear()
-        self.ui.NameBox.addItem("")
-        for i in self.Commondata.tModeli:
-            self.ui.NameBox.addItem(i)
-            
-        #Заполняем список PoverBox
-        self.ui.PoverBox.clear()
-        self.ui.PoverBox.addItem("")
-        for i in self.Commondata.Poveriteli:
-            self.ui.PoverBox.addItem(i)
+            self.ui.NameBox.clear()
+            self.ui.NameBox.addItem("")
+            for i in self.Commondata.tModeli:
+                self.ui.NameBox.addItem(i)
+                
+            #Заполняем список PoverBox
+            self.ui.PoverBox.clear()
+            self.ui.PoverBox.addItem("")
+            for i in self.Commondata.Poveriteli:
+                self.ui.PoverBox.addItem(i)
             
         vv=16
         #//fill temp values
@@ -224,8 +226,6 @@ class TempForm(QtGui.QWidget):
         
     def ownercurrentIndexChanged(self, index ):
         if index>=0:
-            #QtCore.QVariant v=self.ui.OwnerBox.itemData(index)
-            #self.ui.INNEdit.setText(v.toString())
             self.ui.INNEdit.setText(self.ui.OwnerBox.itemData(index))
             
     def print_button_clicked(self):
