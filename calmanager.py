@@ -44,7 +44,9 @@ class MyMainWindow(QtGui.QMainWindow):
         tempform1.show()
     def aboutButton(self):
         QtGui.QMessageBox.about(self, u"Поверка датчиков давления и температуры",
-                u"Программа для обработки данных и формирования свидетельств и протоколов поверки датчиков давления и температуры.\n\nАвтор: Зонов В. М.\n\ne-mail: corvinalive@list.ru\n\nЛицензия: GPL v.2\n\nВерсия: 0.4 betta")
+                u"Программа для обработки данных и формирования свидетельств и протоколов поверки датчиков давления и \
+                температуры.\n\nАвтор: Зонов В. М.\n\ne-mail: corvinalive@list.ru\n\nЛицензия: GPL v.2\n\n\
+                Исходники: https://corvinalive@github.com/corvinalive/CalManager.git\n\nВерсия: 0.4 betta")
 
         
 		    

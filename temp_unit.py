@@ -20,9 +20,9 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-import struct, sys
+import struct, sys, os
 from PySide import QtCore, QtGui
-import commondata
+import commondata, odt_tools
 
 from temperature import Ui_TempForm
 
@@ -230,3 +230,152 @@ class TempForm(QtGui.QWidget):
             
     def print_button_clicked(self):
         print "Print"
+        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", u"./Шаблоны температура", u"Файл-шаблон (*.odt)")
+        if os.path.exists(fileName[0])==False:
+            return
+        #Заполняем список для замены
+        a = []
+        if self.ui.DayBox.isChecked():
+            ss=self.ui.dateEdit.date().toString("dd")
+        else:
+            ss=u"<text:s text:c=\"4\"/>"
+        a.append((u"DAY",ss))
+        if self.ui.MonthBox.isChecked():
+            m=self.ui.dateEdit.date().month()
+            months=[u"января",u"февраля",u"марта",u"апреля",u"мая",u"июня",
+                    u"июля",u"августа",u"сентября",u"октября",u"ноября",
+                    u"декабря"]
+            ss=months[m-1]
+        else:
+            ss=u"<text:s text:c=\"20\"/>"
+        a.append((u"MONTH",ss))
+        
+        #add year
+        ss=self.ui.dateEdit.date().toString("yyyy")
+        a.append((u"ywhen",ss))
+        
+        ss=str(self.ui.dateEdit.date().year()+1)
+        #ss.setNum(yearbefore);
+        a.append((u"ybefore", ss))
+        a.append((u"IPTYPE",self.ui.NameBox.currentText()))
+        a.append((u"KLEIMO",self.ui.KleimoEdit.text()))
+        a.append((u"SNIP", self.ui.SerialEdit.text()))
+        a.append((u"SNTSP", self.ui.SerialEdit_2.text()))
+        a.append((u"OWNER", self.ui.OwnerBox.currentText()))
+        a.append((u"TVOS", self.ui.tvos_box.text()))
+        a.append((u"ATMPRESS", self.ui.atmkpa_box.text()))
+        a.append((u"inn-inn-inn", self.ui.INNEdit.text()))
+        a.append((u"VLAGA", self.ui.water_box.text()))
+        a.append((u"POVER", self.ui.PoverBox.currentText()))
+        
+        ss = str(self.min)
+        a.append((u"MIN", ss))
+        ss =str(self.max)
+        a.append((u"MAX", ss))
+        
+        ss=u"%.3f"%self.ui.r0box.value()
+        a.append((u"RNULL", ss))
+        
+        ss=u"%.3f"%self.ui.r100box.value()
+        a.append((u"RSTO", ss))
+        
+        #FILL TABLE
+        #1st column
+        ss=str(self.t[0])
+        a.append((u"TABL11",ss))
+        
+        ss = str( self.t[1])
+        a.append((u"TABL21",ss))
+                
+        ss = str(self.t[2])
+        a.append((u"TABL31",ss))
+        
+        ss=str(self.t[3])
+        a.append((u"TABL41",ss))
+        
+        ss=str(self.t[4])
+        a.append((u"TABL51",ss))
+        
+        ss=str(self.t[5])
+        a.append((u"TABL61",ss))
+        
+        #fill 2nd column
+        ss=u"%.2f"%self.td[0]
+        a.append((u"TABL12",ss))
+        
+        ss=u"%.2f"%self.td[1]
+        a.append((u"TABL22",ss))
+        
+        ss=u"%.2f"%self.td[2]
+        a.append((u"TABL32",ss))
+        
+        ss=u"%.2f"%self.td[3]
+        a.append((u"TABL42",ss))
+        
+        ss=u"%.2f"%self.td[4]
+        a.append((u"TABL52",ss))
+        
+        ss=u"%.2f"%self.td[5]
+        a.append((u"TABL62",ss))
+        
+        #fill 3th column
+        ss=u"%.3f"%self.i[0]
+        a.append((u"TABL13",ss))
+        
+        ss=u"%.3f"%self.i[1]
+        a.append((u"TABL23",ss))
+        
+        ss=u"%.3f"%self.i[2]
+        a.append((u"TABL33",ss))
+        
+        ss=u"%.3f"%self.i[3]
+        a.append((u"TABL43",ss))
+        
+        ss=u"%.3f"%self.i[4]
+        a.append((u"TABL53",ss))
+        
+        ss=u"%.3f"%self.i[5]
+        a.append((u"TABL63",ss))
+        
+        #fill 4th column
+        ss=u"%.2f"%self.ti[0]
+        a.append((u"TABL14",ss))
+        
+        ss=u"%.2f"%self.ti[1]
+        a.append((u"TABL24",ss))
+        
+        ss=u"%.2f"%self.ti[2]
+        a.append((u"TABL34",ss))
+        
+        ss=u"%.2f"%self.ti[3]
+        a.append((u"TABL44",ss))
+        
+        ss=u"%.2f"%self.ti[4]
+        a.append((u"TABL54",ss))
+        
+        ss=u"%.2f"%self.ti[5]
+        a.append((u"TABL64",ss))
+        
+        #fill last column
+        ss=u"%.2f"%self.d[0]
+        a.append((u"TABL15",ss))
+        
+        ss=u"%.2f"%self.d[1]
+        a.append((u"TABL25",ss))
+        
+        ss=u"%.2f"%self.d[2]
+        a.append((u"TABL35",ss))
+        
+        ss=u"%.2f"%self.d[3]
+        a.append((u"TABL45",ss))
+        
+        ss=u"%.2f"%self.d[4]
+        a.append((u"TABL55",ss))
+        
+        ss=u"%.2f"%self.d[5]
+        a.append((u"TABL65",ss))
+
+        odt_tools.Prepare_odt(fileName[0])
+        odt_tools.Replace(a)
+        odt_tools.Save_odt(fileName[0]+".temp")
+
