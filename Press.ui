@@ -23,7 +23,7 @@
    <item row="2" column="0">
     <widget class="QPushButton" name="PrintButton">
      <property name="text">
-      <string>Сформировать протокол</string>
+      <string>Протокол...</string>
      </property>
      <property name="flat">
       <bool>false</bool>
@@ -57,7 +57,7 @@
         <rect>
          <x>418</x>
          <y>279</y>
-         <width>216</width>
+         <width>217</width>
          <height>25</height>
         </rect>
        </property>
@@ -259,7 +259,7 @@ p, li { white-space: pre-wrap; }
          <x>0</x>
          <y>0</y>
          <width>411</width>
-         <height>126</height>
+         <height>128</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_4">
@@ -549,7 +549,7 @@ p, li { white-space: pre-wrap; }
          <x>420</x>
          <y>246</y>
          <width>281</width>
-         <height>28</height>
+         <height>29</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1253,7 +1253,59 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
-        <item row="11" column="0">
+        <item row="3" column="2">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>измереннный ток</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4" rowspan="2">
+         <widget class="QLabel" name="label_26">
+          <property name="text">
+           <string>Прямой ход</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="5" rowspan="2">
+         <widget class="QLabel" name="label_27">
+          <property name="text">
+           <string>Обратный ход</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="6" rowspan="2">
+         <widget class="QLabel" name="label_28">
+          <property name="text">
+           <string>Вариация</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1">
          <widget class="QLabel" name="label_maxd">
           <property name="text">
            <string>0,00%</string>
@@ -1263,7 +1315,20 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
-        <item row="11" column="2">
+        <item row="11" column="0">
+         <widget class="QLabel" name="label_29">
+          <property name="text">
+           <string>Макс. погр.:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="3">
          <widget class="QLabel" name="label_maxv">
           <property name="text">
            <string>0,00</string>
@@ -1273,10 +1338,10 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
-        <item row="3" column="2">
-         <widget class="QLabel" name="label_10">
+        <item row="11" column="2">
+         <widget class="QLabel" name="label_30">
           <property name="text">
-           <string>измереннный ток</string>
+           <string>Макс. вар.:</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>

@@ -24,6 +24,7 @@ import struct, sys
 from PySide import QtCore, QtGui
 from mymainwindow import Ui_MyMainWindow
 from temp_unit import TempForm
+from press_unit import PressForm
 import commondata
 
 class MyMainWindow(QtGui.QMainWindow):
@@ -34,6 +35,7 @@ class MyMainWindow(QtGui.QMainWindow):
         self.ui.setupUi(self)
         self.setCentralWidget(self.ui.mdiArea);
         self.connect(self.ui.Tempaction, QtCore.SIGNAL("triggered()"), self.pushButtonTemp)
+        self.connect(self.ui.Pressaction, QtCore.SIGNAL("triggered()"), self.pushButtonPress)
         self.connect(self.ui.Aboutaction, QtCore.SIGNAL("triggered()"), self.aboutButton)
         self.Commondata = commondata.Commondata()
     
@@ -42,6 +44,10 @@ class MyMainWindow(QtGui.QMainWindow):
         tempform1 = TempForm(self.Commondata,self)
         self.ui.mdiArea.addSubWindow(tempform1)
         tempform1.show()
+    def pushButtonPress(self):
+        pressform1 = PressForm(self.Commondata,self)
+        self.ui.mdiArea.addSubWindow(pressform1)
+        pressform1.show()
     def aboutButton(self):
         QtGui.QMessageBox.about(self, u"Поверка датчиков давления и температуры",
                 u"Программа для обработки данных и формирования свидетельств и протоколов поверки датчиков давления и \
