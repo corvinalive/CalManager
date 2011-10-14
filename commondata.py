@@ -67,4 +67,35 @@ class Commondata:
             self.tModeli.append(Name)
         qs.endArray()
 
+    def SaveSetting(self):
+        #print "Save setting"
+        qs = QtCore.QSettings("calmanager.ini", QtCore.QSettings.IniFormat)
 
+        size = qs.beginWriteArray("companies")
+        c = len(self.Companies)
+        for i in range(c):
+            qs.setArrayIndex(i)
+            qs.setValue("Name", self.Companies[i][0])
+            qs.setValue("INN", self.Companies[i][1])
+        qs.endArray()
+
+        size = qs.beginWriteArray("poveriteli")
+        c = len(self.Poveriteli)
+        for i in range(c):
+            qs.setArrayIndex(i)
+            qs.setValue("FIO", self.Poveriteli[i])
+        qs.endArray()
+
+        size = qs.beginWriteArray("PModeli")
+        c = len(self.PModeli)
+        for i in range(c):
+            qs.setArrayIndex(i)
+            qs.setValue("FIO", self.PModeli[i])
+        qs.endArray()
+
+        size = qs.beginWriteArray("tModeli")
+        c = len(self.tModeli)
+        for i in range(c):
+            qs.setArrayIndex(i)
+            qs.setValue("FIO", self.tModeli[i])
+        qs.endArray()
