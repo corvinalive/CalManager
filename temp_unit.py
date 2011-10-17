@@ -375,7 +375,6 @@ class TempForm(QtGui.QWidget):
         ss=u"%.2f"%self.d[5]
         a.append((u"TABL65",ss))
 
-        odt_tools.Prepare_odt(fileName[0])
-        odt_tools.Replace(a)
-        odt_tools.Save_odt(fileName[0]+".temp")
+        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Температура")
+
 

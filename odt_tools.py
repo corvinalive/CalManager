@@ -21,7 +21,7 @@
 #       MA 02110-1301, USA.
 
 from PySide import QtCore, QtGui
-import shutil
+import shutil, sys
 
 def Prepare_odt(filename):
     #delete temp file
@@ -61,7 +61,7 @@ def Prepare_odt(filename):
         msgBox.exec_()
         return
 
-def Save_odt(tempfilename, newfilename=None):
+def Save_odt(tempfilename, newfilename=None, Prefix=None, Postfix=None):
     #обновление content.xml из print.temp
     arguments =[]
     arguments.append(tempfilename)
@@ -86,21 +86,37 @@ def Save_odt(tempfilename, newfilename=None):
     
     #create new directory
     dir1 = QtCore.QDir()
+    dir1.cd(sys.path[0])
     DirOk=False
     ss=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
-    ss1=dir1.currentPath()
+    ss1=sys.path[0]
+    print "ss=",ss
     #QMessageBox msgBox
     #if(dir.exists())
             
     DirOk=dir1.mkpath(ss)
+    
+    if Prefix:
+        ss1+="/Prefix+"
+    else:
+       ss1+=u"/"
+    
+    if Prefix==None:
+        Prefix=""
+    else:
+        Prefix+=" "
 
     if DirOk :
-        ss1=ss+u"/ДТ "
-        ss1+=(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss")+u".odt")
+        ss1+=ss+"/"+Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
     else:
-        ss1=u"ДТ "
-        ss1+=u(QtCore.QDateTime.currentDateTime ().toString(u"yyyy MM dd hh mm ss")+u".odt")
+        ss1+=Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
+        
+    if Postfix:
+        ss1+=" "+Postfix+u".odt"
+    else:
+        ss1+=u".odt"
     print ss1
+    print "tempfilename=",tempfilename
     shutil.copyfile(tempfilename,ss1)
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
@@ -119,6 +135,12 @@ def Replace(spisok):
     fl.truncate(0)
     fl.write(flstr.encode("UTF-8"))
     fl.close()
+
+def GenerateDocument(TemplateFileName, ReplaceList, Prefix):
+    Prepare_odt(TemplateFileName)
+    Replace(ReplaceList)
+    Save_odt(TemplateFileName+".temp",Prefix)
+
 	
 def main():
     print "main"

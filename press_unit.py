@@ -448,9 +448,9 @@ class PressForm(QtGui.QWidget):
         
         
         ss = str(self.min)
-        a.append((u"min", ss))
+        a.append((u"range_min", ss))
         ss =str(self.max)
-        a.append((u"max", ss))
+        a.append((u"range_max", ss))
         
         #file 1st column
         ss="%.3f"%self.min
@@ -640,7 +640,5 @@ class PressForm(QtGui.QWidget):
         ss="%.3f"%self.maxv
         a.append((u"m-axv",ss))
 
-        odt_tools.Prepare_odt(fileName[0])
-        odt_tools.Replace(a)
-        odt_tools.Save_odt(fileName[0]+".temp")
+        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление")
 
