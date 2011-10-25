@@ -26,6 +26,7 @@ from mymainwindow import Ui_MyMainWindow
 from temp_unit import TempForm
 from press_unit import PressForm
 from options_unit import OptionsForm
+from update_unit import UpdateForm
 import commondata
 
 class MyMainWindow(QtGui.QMainWindow):
@@ -39,8 +40,8 @@ class MyMainWindow(QtGui.QMainWindow):
         self.connect(self.ui.Pressaction, QtCore.SIGNAL("triggered()"), self.pushButtonPress)
         self.connect(self.ui.Aboutaction, QtCore.SIGNAL("triggered()"), self.aboutButton)
         self.connect(self.ui.Setupaction, QtCore.SIGNAL("triggered()"), self.setupButton)
+        self.connect(self.ui.Updateaction, QtCore.SIGNAL("triggered()"), self.updateButton)
         self.Commondata = commondata.Commondata()
-    
       
     def pushButtonTemp(self):
         tempform1 = TempForm(self.Commondata,self)
@@ -60,6 +61,10 @@ class MyMainWindow(QtGui.QMainWindow):
         of.Prepare()
         of.exec_()
             
+    def updateButton(self):
+        of = UpdateForm(self.Commondata,None)
+        #of.Prepare()
+        of.exec_()
 
 def main():
     app = QtGui.QApplication(sys.argv)

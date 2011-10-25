@@ -1,10 +1,11 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>OptionsDialog</class>
- <widget class="QDialog" name="OptionsDialog" >
-  <property name="windowModality" >
+ <widget class="QDialog" name="OptionsDialog">
+  <property name="windowModality">
    <enum>Qt::NonModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,14 +13,14 @@
     <height>661</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Настройки</string>
   </property>
-  <property name="modal" >
+  <property name="modal">
    <bool>true</bool>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget_2" >
-   <property name="geometry" >
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
@@ -27,21 +28,21 @@
      <height>591</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2" >
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QTabWidget" name="tabWidget" >
-      <property name="tabShape" >
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="tabShape">
        <enum>QTabWidget::Rounded</enum>
       </property>
-      <property name="currentIndex" >
-       <number>3</number>
+      <property name="currentIndex">
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="tab_3" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
         <string>Компании</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget" >
-        <property name="geometry" >
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
@@ -49,59 +50,59 @@
           <height>520</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="lay" >
-         <property name="sizeConstraint" >
+        <layout class="QVBoxLayout" name="lay">
+         <property name="sizeConstraint">
           <enum>QLayout::SetMaximumSize</enum>
          </property>
-         <property name="leftMargin" >
+         <property name="leftMargin">
           <number>0</number>
          </property>
-         <property name="topMargin" >
+         <property name="topMargin">
           <number>0</number>
          </property>
          <item>
-          <widget class="QTableWidget" name="CompanyTableWidget" >
-           <property name="alternatingRowColors" >
+          <widget class="QTableWidget" name="CompanyTableWidget">
+           <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
-           <property name="selectionMode" >
+           <property name="selectionMode">
             <enum>QAbstractItemView::SingleSelection</enum>
            </property>
-           <property name="selectionBehavior" >
+           <property name="selectionBehavior">
             <enum>QAbstractItemView::SelectRows</enum>
            </property>
-           <property name="rowCount" >
+           <property name="rowCount">
             <number>1</number>
            </property>
-           <property name="columnCount" >
+           <property name="columnCount">
             <number>2</number>
            </property>
            <row/>
            <column>
-            <property name="text" >
+            <property name="text">
              <string>Наименование</string>
             </property>
            </column>
            <column>
-            <property name="text" >
+            <property name="text">
              <string>ИНН</string>
             </property>
            </column>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="AddButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="AddButton">
+           <property name="text">
             <string>Добавить</string>
            </property>
-           <property name="flat" >
+           <property name="flat">
             <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="DeleteButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="DeleteButton">
+           <property name="text">
             <string>Удалить</string>
            </property>
           </widget>
@@ -109,12 +110,12 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
         <string>Поверители</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_3" >
-        <property name="geometry" >
+       <widget class="QWidget" name="verticalLayoutWidget_3">
+        <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
@@ -122,46 +123,46 @@
           <height>501</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3" >
-         <property name="sizeConstraint" >
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="sizeConstraint">
           <enum>QLayout::SetMaximumSize</enum>
          </property>
          <item>
-          <widget class="QTableWidget" name="PovTableWidget" >
-           <property name="alternatingRowColors" >
+          <widget class="QTableWidget" name="PovTableWidget">
+           <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
-           <property name="selectionMode" >
+           <property name="selectionMode">
             <enum>QAbstractItemView::SingleSelection</enum>
            </property>
-           <property name="selectionBehavior" >
+           <property name="selectionBehavior">
             <enum>QAbstractItemView::SelectRows</enum>
            </property>
-           <property name="rowCount" >
+           <property name="rowCount">
             <number>2</number>
            </property>
-           <property name="columnCount" >
+           <property name="columnCount">
             <number>1</number>
            </property>
            <row/>
            <row/>
            <column>
-            <property name="text" >
+            <property name="text">
              <string>ФИО</string>
             </property>
            </column>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="AddPovButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="AddPovButton">
+           <property name="text">
             <string>Добавить</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="DeletePovButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="DeletePovButton">
+           <property name="text">
             <string>Удалить</string>
            </property>
           </widget>
@@ -169,12 +170,12 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="widget" >
-       <attribute name="title" >
+      <widget class="QWidget" name="widget">
+       <attribute name="title">
         <string>Датчики давления</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_4" >
-        <property name="geometry" >
+       <widget class="QWidget" name="verticalLayoutWidget_4">
+        <property name="geometry">
          <rect>
           <x>2</x>
           <y>3</y>
@@ -182,43 +183,43 @@
           <height>501</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_4" >
+        <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QTableWidget" name="PTableWidget" >
-           <property name="alternatingRowColors" >
+          <widget class="QTableWidget" name="PTableWidget">
+           <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
-           <property name="selectionMode" >
+           <property name="selectionMode">
             <enum>QAbstractItemView::SingleSelection</enum>
            </property>
-           <property name="selectionBehavior" >
+           <property name="selectionBehavior">
             <enum>QAbstractItemView::SelectRows</enum>
            </property>
-           <property name="rowCount" >
+           <property name="rowCount">
             <number>2</number>
            </property>
-           <property name="columnCount" >
+           <property name="columnCount">
             <number>1</number>
            </property>
            <row/>
            <row/>
            <column>
-            <property name="text" >
+            <property name="text">
              <string>Модель</string>
             </property>
            </column>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="PAddButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="PAddButton">
+           <property name="text">
             <string>Добавить</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="PDeleteButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="PDeleteButton">
+           <property name="text">
             <string>Удалить</string>
            </property>
           </widget>
@@ -226,12 +227,12 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_2" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
         <string>Датчики температуры</string>
        </attribute>
-       <widget class="QWidget" name="verticalLayoutWidget_5" >
-        <property name="geometry" >
+       <widget class="QWidget" name="verticalLayoutWidget_5">
+        <property name="geometry">
          <rect>
           <x>0</x>
           <y>0</y>
@@ -239,43 +240,43 @@
           <height>501</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5" >
+        <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QTableWidget" name="tTableWidget" >
-           <property name="alternatingRowColors" >
+          <widget class="QTableWidget" name="tTableWidget">
+           <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
-           <property name="selectionMode" >
+           <property name="selectionMode">
             <enum>QAbstractItemView::SingleSelection</enum>
            </property>
-           <property name="selectionBehavior" >
+           <property name="selectionBehavior">
             <enum>QAbstractItemView::SelectRows</enum>
            </property>
-           <property name="rowCount" >
+           <property name="rowCount">
             <number>2</number>
            </property>
-           <property name="columnCount" >
+           <property name="columnCount">
             <number>1</number>
            </property>
            <row/>
            <row/>
            <column>
-            <property name="text" >
+            <property name="text">
              <string>Модель</string>
             </property>
            </column>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="tAddButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="tAddButton">
+           <property name="text">
             <string>Добавить</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="tDeleteButton" >
-           <property name="text" >
+          <widget class="QPushButton" name="tDeleteButton">
+           <property name="text">
             <string>Удалить</string>
            </property>
           </widget>
@@ -283,14 +284,42 @@
         </layout>
        </widget>
       </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Настройки ПО</string>
+       </attribute>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>381</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ftp сервер для обновлений:</string>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="ServerEdit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>551</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
     <item>
-     <widget class="QDialogButtonBox" name="buttonBox" >
-      <property name="orientation" >
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <property name="standardButtons" >
+      <property name="standardButtons">
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
       </property>
      </widget>
@@ -306,11 +335,11 @@
    <receiver>OptionsDialog</receiver>
    <slot>accept()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>248</x>
      <y>254</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>157</x>
      <y>274</y>
     </hint>
@@ -322,11 +351,11 @@
    <receiver>OptionsDialog</receiver>
    <slot>reject()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>316</x>
      <y>260</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
     </hint>

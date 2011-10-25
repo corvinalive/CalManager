@@ -37,12 +37,13 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="Tempaction"/>
    <addaction name="Pressaction"/>
    <addaction name="Setupaction"/>
    <addaction name="Aboutaction"/>
+   <addaction name="Updateaction"/>
   </widget>
   <action name="Tempaction">
    <property name="text">
@@ -68,6 +69,11 @@
   <action name="Aboutaction">
    <property name="text">
     <string>О программе...</string>
+   </property>
+  </action>
+  <action name="Updateaction">
+   <property name="text">
+    <string>Обновление</string>
    </property>
   </action>
  </widget>
