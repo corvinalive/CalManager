@@ -24,6 +24,7 @@ import struct, sys, os
 from PySide import QtCore, QtGui
 import commondata
 import ftplib
+import socket
 
 from update_form import Ui_Dialog
 
@@ -37,16 +38,47 @@ class UpdateForm(QtGui.QDialog):
         self.connect(self.ui.addpushButton, QtCore.SIGNAL("clicked(bool)"), self.AddButton)
         self.connect(self.ui.deletepushButton, QtCore.SIGNAL("clicked(bool)"), self.DeleteButton)
         self.connect(self.ui.LoadpushButton, QtCore.SIGNAL("clicked(bool)"), self.LoadButton)
+        
+    def CheckInet(self):
+        try:
+            socket.gethostbyaddr('www.yandex.ru')
+        except socket.gaierror:
+            return False
+        return True
     
     def LoadButton(self):
         print "Load"
         c = self.ui.listWidget2.count()
+        #Проверка наличия выбранных элементов для загрузки
         if c==0:
             self.ui.Statuslabel.setText(u"Ничего не выбрано для загрузкиs")
             return
+        #Проверка наличия инета
+        if self.CheckInet()==False:
+            self.ui.Statuslabel.setText(u"Нет соединения с интернет. Установите соединение и повторите попытку")
+            return
+
+        #Загрузка файлов
+        #Формирование списка
+        fn=[]
         for i in range(c):
-            fn=self.ui.listWidget2.item(i).data(1)
-                
+            item=self.ui.listWidget2.item(i).data(1)
+            #iname="\""+item.strip()+"\""
+            iname=item.encode("utf8","latin-1")
+            print "item=",item,"basename=",os.path.basename(item),"iname=",iname
+            fn.append((iname,os.path.basename(item)))
+        server = "ims-nv.ru"
+        try:
+            ftp = ftplib.FTP(server,timeout=30)
+            ftp.login()
+            for fni in fn:
+                print "Get file ", fni[0]
+                ftp.retrbinary("RETR "+fni[0], open(fni[1], "w+").write)
+            ftp.quit()
+            self.ui.Statuslabel.setText(u"Обновления загружены")
+        except ftplib.all_errors, err:
+            self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
+
     def AddButton(self):
         item=self.ui.listWidget1.currentItem()
         if item:
@@ -66,14 +98,17 @@ class UpdateForm(QtGui.QDialog):
         self.ui.listWidget2.addItem(item2)        
 
     def DeleteButton(self):
-        item=self.ui.listWidget2.currentItem()
-        self.ui.listWidget2.removeItemWidget(item)
+        item=self.ui.listWidget2.currentRow()
+        self.ui.listWidget2.takeItem(item)
         
         
         
     def CheckUpdatesButton(self):
-        """
-        fn=[]
+        if self.CheckInet()==False:
+            self.ui.Statuslabel.setText(u"Нет соединения с интернет. Установите соединение и повторите попытку")
+            return
+
+        """fn=[]
         fn.append(("calmanager/press_templates/list","press_list"))
         fn.append(("calmanager/temp_templates/list","temp_list"))
         fn.append(("calmanager/windows_binary/list","windows_list"))
@@ -88,11 +123,8 @@ class UpdateForm(QtGui.QDialog):
             ftp.quit()
             self.ui.Statuslabel.setText(u"Обновления загружены")
         except ftplib.all_errors, err:
-            #s=u"Ошибка проверки: "
-            #ss= str(err).decode("utf-8")
-            #s+=ss
             self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
-        """    
+        """
         self.ShowUpdates()
         
     def ReadList(self,filename,outlist):
@@ -132,25 +164,25 @@ class UpdateForm(QtGui.QDialog):
         self.ui.listWidget1.addItem(u"Шаблоны давления:")
         for i in self.presslist:
             item = QtGui.QListWidgetItem(i[1].decode("utf8"))
-            item.setData(1,i[0].decode("utf8"))
+            item.setData(1,u"calmanager/press_templates/"+i[0].decode("utf8"))
             self.ui.listWidget1.addItem(item)
         #add temp items
         self.ui.listWidget1.addItem(u"Шаблоны температуры:")
         for i in self.templist:
             item = QtGui.QListWidgetItem(i[1].decode("utf8"))
-            item.setData(1,i[0].decode("utf8"))
+            item.setData(1,u"calmanager/temp_templates/"+i[0].decode("utf8"))
             self.ui.listWidget1.addItem(item)
         #add win items
         self.ui.listWidget1.addItem(u"Программа для Windows:")
         for i in self.wpolist:
             item = QtGui.QListWidgetItem(i[1].decode("utf8"))
-            item.setData(1,i[0].decode("utf8"))
+            item.setData(1,u"calmanager/windows_binary/"+i[0].decode("utf8"))
             self.ui.listWidget1.addItem(item)
         #add linux items
         self.ui.listWidget1.addItem(u"Программа для Linux:")
         for i in self.lpolist:
             item = QtGui.QListWidgetItem(i[1].decode("utf8"))
-            item.setData(1,i[0].decode("utf8"))
+            item.setData(1,u"calmanager/linux_binary/"+i[0].decode("utf8"))
             self.ui.listWidget1.addItem(item)
 
 
@@ -158,6 +190,19 @@ class UpdateForm(QtGui.QDialog):
 def main():
     print "main"
 
+    server = "ims-nv.ru"
+    try:
+        fni=u"calmanager/press_templates/2011 Калибровка диф.odt"
+        fni=fni.encode("utf8","latin-1")
+        print fni
+        ftp = ftplib.FTP(server,timeout=30)
+        ftp.login()
+        print "Get file ", fni
+        ftp.retrbinary("RETR "+fni, open("fni.odt", "w+").write)
+        ftp.quit()
+        print u"Обновления загружены"
+    except ftplib.all_errors, err:
+        print "Ошибка проверки: "
 
     
     
