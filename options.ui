@@ -301,13 +301,13 @@
          <string>ftp сервер для обновлений:</string>
         </property>
        </widget>
-       <widget class="QPlainTextEdit" name="ServerEdit">
+       <widget class="QLineEdit" name="ServerEdit">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>40</x>
           <y>50</y>
-          <width>551</width>
-          <height>31</height>
+          <width>411</width>
+          <height>27</height>
          </rect>
         </property>
        </widget>

@@ -102,6 +102,8 @@ class OptionsForm(QtGui.QDialog):
                 tvi=QtGui.QTableWidgetItem(i)
                 self.ui.tTableWidget.setItem(counter,0,tvi)
             counter+=1
+        #Сервер
+        self.ui.ServerEdit.setText(self.Commondata.servername)
 
     def delete_button_clicked (self,bool):
         i = self.ui.CompanyTableWidget.currentRow()
@@ -134,6 +136,7 @@ class OptionsForm(QtGui.QDialog):
     def ok_button_clicked (self):
         print "Ok button pressed"
         #Save changes
+        self.Commondata.servername=self.ui.ServerEdit.text()
         c=self.ui.CompanyTableWidget.rowCount()
         self.Commondata.Companies=[]
         for i in range(c):

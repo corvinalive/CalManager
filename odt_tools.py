@@ -61,8 +61,9 @@ def Prepare_odt(filename):
         msgBox.exec_()
         return
 
-def Save_odt(tempfilename, newfilename=None, Prefix=None, Postfix=None):
+def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
     #обновление content.xml из print.temp
+    print "Prefix1=",Prefix1 
     arguments =[]
     arguments.append(tempfilename)
     arguments.append("content.xml")
@@ -86,38 +87,29 @@ def Save_odt(tempfilename, newfilename=None, Prefix=None, Postfix=None):
     
     #create new directory
     dir1 = QtCore.QDir()
-    dir1.cd(sys.path[0])
+    apppath=sys.path[0]
+    dir1.cd(apppath)
     DirOk=False
-    ss=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
-    ss1=sys.path[0]
-    print "ss=",ss
-    #QMessageBox msgBox
-    #if(dir.exists())
-            
-    DirOk=dir1.mkpath(ss)
+    new_dir=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
+    DirOk=dir1.mkpath(new_dir)
     
-    if Prefix:
-        ss1+="/Prefix+"
+
+    if Prefix1==None:
+        Prefix1=""
     else:
-       ss1+=u"/"
-    
-    if Prefix==None:
-        Prefix=""
-    else:
-        Prefix+=" "
+        Prefix1+=" "
 
     if DirOk :
-        ss1+=ss+"/"+Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
+        filename=apppath+"/"+new_dir+"/"+Prefix1+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
     else:
-        ss1+=Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
+        filename=apppath+"/"+Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
         
-    if Postfix:
-        ss1+=" "+Postfix+u".odt"
+    if Postfix1:
+        filename+=" "+Postfix1+u".odt"
     else:
-        ss1+=u".odt"
-    print ss1
-    print "tempfilename=",tempfilename
-    shutil.copyfile(tempfilename,ss1)
+        filename+=u".odt"
+    
+    shutil.copyfile(tempfilename,filename)
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
 	    
@@ -137,9 +129,10 @@ def Replace(spisok):
     fl.close()
 
 def GenerateDocument(TemplateFileName, ReplaceList, Prefix):
+    print "Prefix=",Prefix
     Prepare_odt(TemplateFileName)
     Replace(ReplaceList)
-    Save_odt(TemplateFileName+".temp",Prefix)
+    Save_odt(TemplateFileName+".temp",Prefix1=Prefix)
 
 	
 def main():

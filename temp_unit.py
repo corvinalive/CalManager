@@ -230,7 +230,7 @@ class TempForm(QtGui.QWidget):
             
     def print_button_clicked(self):
         print "Print"
-        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", u"./Шаблоны температура", u"Файл-шаблон (*.odt)")
+        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.temp_template_dir, u"Файл-шаблон (*.odt)")
         if os.path.exists(fileName[0])==False:
             return
         #Заполняем список для замены
@@ -375,6 +375,6 @@ class TempForm(QtGui.QWidget):
         ss=u"%.2f"%self.d[5]
         a.append((u"TABL65",ss))
 
-        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Температура")
+        odt_tools.GenerateDocument(fileName[0], a, u"Температура")
 
 

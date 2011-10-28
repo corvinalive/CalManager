@@ -406,7 +406,7 @@ class PressForm(QtGui.QWidget):
             
     def print_button_clicked(self):
         print "Print"
-        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", u"./Шаблоны давление", u"Файл-шаблон (*.odt)")
+        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.press_template_dir, u"Файл-шаблон (*.odt)")
         if os.path.exists(fileName[0])==False:
             return
         #Заполняем список для замены

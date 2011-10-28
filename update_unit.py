@@ -34,6 +34,7 @@ class UpdateForm(QtGui.QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
         self.Commondata = cd
+        self.setWindowTitle(u"Обновление Calmanager. Текущая версия "+self.Commondata.version)
         self.connect(self.ui.CheckpushButton, QtCore.SIGNAL("clicked(bool)"), self.CheckUpdatesButton)
         self.connect(self.ui.addpushButton, QtCore.SIGNAL("clicked(bool)"), self.AddButton)
         self.connect(self.ui.deletepushButton, QtCore.SIGNAL("clicked(bool)"), self.DeleteButton)
@@ -71,13 +72,29 @@ class UpdateForm(QtGui.QDialog):
         try:
             ftp = ftplib.FTP(server,timeout=30)
             ftp.login()
+        except ftplib.all_errors, err:
+            self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
+
+        try:
             for fni in fn:
                 print "Get file ", fni[0]
                 ftp.retrbinary("RETR "+fni[0], open(fni[1], "w+").write)
-            ftp.quit()
-            self.ui.Statuslabel.setText(u"Обновления загружены")
+            self.ui.Statuslabel.setText(u"Выбранные обновления загружены")
         except ftplib.all_errors, err:
             self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
+        ftp.quit()
+        
+        #перемещение полученных файлов в нужные папки
+        """for fni in fn:
+            if fni[0].find(u"press_templates") != -1:
+                #переместить в шаблоны давления
+                #проверка есть файл с таким же именем
+                if os.path.exists("./"+fni[1]):
+                    #такой файл есть
+                else:
+                    #файла нет, перемещаем
+        """
+                    
 
     def AddButton(self):
         item=self.ui.listWidget1.currentItem()
@@ -108,23 +125,23 @@ class UpdateForm(QtGui.QDialog):
             self.ui.Statuslabel.setText(u"Нет соединения с интернет. Установите соединение и повторите попытку")
             return
 
-        """fn=[]
+        fn=[]
         fn.append(("calmanager/press_templates/list","press_list"))
         fn.append(("calmanager/temp_templates/list","temp_list"))
         fn.append(("calmanager/windows_binary/list","windows_list"))
         fn.append(("calmanager/linux_binary/list","linux_list"))
-        server = "ims-nv.ru"
+        server = self.Commondata.servername
         try:
             ftp = ftplib.FTP(server,timeout=30)
             ftp.login()
             for fni in fn:
                 print "Get file ", fni[0]
-                ftp.retrbinary("RETR "+fni[0], open(fni[1], "w+").write)
+                ftp.retrbinary("RETR "+fni[0], open(self.Commondata.apppath+"/"+fni[1], "w+").write)
             ftp.quit()
-            self.ui.Statuslabel.setText(u"Обновления загружены")
+            self.ui.Statuslabel.setText(u"Список доступных обновлений загружен")
         except ftplib.all_errors, err:
             self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
-        """
+
         self.ShowUpdates()
         
     def ReadList(self,filename,outlist):
@@ -151,13 +168,13 @@ class UpdateForm(QtGui.QDialog):
     def ShowUpdates(self):
         #read press list
         self.presslist=[]
-        self.ReadList("press_list",self.presslist)
+        self.ReadList(self.Commondata.apppath+"/press_list",self.presslist)
         self.templist=[]
-        self.ReadList("temp_list",self.templist)
+        self.ReadList(self.Commondata.apppath+"/temp_list",self.templist)
         self.wpolist=[]
-        self.ReadList("windows_list",self.wpolist)
+        self.ReadList(self.Commondata.apppath+"/windows_list",self.wpolist)
         self.lpolist=[]
-        self.ReadList("linux_list",self.lpolist)
+        self.ReadList(self.Commondata.apppath+"/linux_list",self.lpolist)
         
         self.ui.listWidget1.clear()
         #add pressure items

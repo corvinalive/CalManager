@@ -55,7 +55,7 @@ class MyMainWindow(QtGui.QMainWindow):
         QtGui.QMessageBox.about(self, u"Поверка датчиков давления и температуры",
                 u"Программа для обработки данных и формирования свидетельств и протоколов поверки датчиков давления и \
                 температуры.\n\nАвтор: Зонов В. М.\n\ne-mail: corvinalive@list.ru\n\nЛицензия: GPL v.2\n\n\
-                Исходники: https://corvinalive@github.com/corvinalive/CalManager.git\n\nВерсия: 0.4 betta")
+                Исходники: https://corvinalive@github.com/corvinalive/CalManager.git\n\nВерсия: "+self.Commondata.version)
     def setupButton(self):
         of = OptionsForm(self.Commondata,self)
         of.Prepare()
