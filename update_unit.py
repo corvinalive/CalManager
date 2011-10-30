@@ -63,11 +63,14 @@ class UpdateForm(QtGui.QDialog):
         #Формирование списка
         fn=[]
         for i in range(c):
+            #item - filename in ftp-server
             item=self.ui.listWidget2.item(i).data(1)
             #iname="\""+item.strip()+"\""
             iname=item.encode("utf8","latin-1")
             print "item=",item,"basename=",os.path.basename(item),"iname=",iname
             fn.append((iname,os.path.basename(item)))
+            #fn[0] - filename in ftp-server
+            #fn[1] - only filename without path
         server = "ims-nv.ru"
         try:
             ftp = ftplib.FTP(server,timeout=30)
@@ -85,15 +88,18 @@ class UpdateForm(QtGui.QDialog):
         ftp.quit()
         
         #перемещение полученных файлов в нужные папки
-        """for fni in fn:
+        for fni in fn:
             if fni[0].find(u"press_templates") != -1:
                 #переместить в шаблоны давления
                 #проверка есть файл с таким же именем
-                if os.path.exists("./"+fni[1]):
+                short_name=fni[1]
+                new_full_name=os.path.join(Commondata.press_template_dir,short_name)
+                if os.path.exists(new_full_name):
                     #такой файл есть
                 else:
                     #файла нет, перемещаем
-        """
+                    QtCore.QFile.rename(short_name,new_full_name)
+
                     
 
     def AddButton(self):
@@ -168,6 +174,7 @@ class UpdateForm(QtGui.QDialog):
     def ShowUpdates(self):
         #read press list
         self.presslist=[]
+        #first str - filename, second - description
         self.ReadList(self.Commondata.apppath+"/press_list",self.presslist)
         self.templist=[]
         self.ReadList(self.Commondata.apppath+"/temp_list",self.templist)
@@ -180,7 +187,9 @@ class UpdateForm(QtGui.QDialog):
         #add pressure items
         self.ui.listWidget1.addItem(u"Шаблоны давления:")
         for i in self.presslist:
+            #save description
             item = QtGui.QListWidgetItem(i[1].decode("utf8"))
+            #save filename
             item.setData(1,u"calmanager/press_templates/"+i[0].decode("utf8"))
             self.ui.listWidget1.addItem(item)
         #add temp items
