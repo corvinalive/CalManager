@@ -20,8 +20,11 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
    
-import struct, sys
+import struct, sys, os
 from PySide import QtCore, QtGui
+
+sys.path.append(os.path.join(sys.path[0],"modules"))
+
 from mymainwindow import Ui_MyMainWindow
 from temp_unit import TempForm
 from press_unit import PressForm
@@ -67,6 +70,7 @@ class MyMainWindow(QtGui.QMainWindow):
         of.exec_()
 
 def main():
+    sys.path.append(os.path.join(sys.path[0],"modules"))
     app = QtGui.QApplication(sys.argv)
     myapp = MyMainWindow()
     myapp.show()
