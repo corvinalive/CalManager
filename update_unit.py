@@ -25,6 +25,7 @@ from PySide import QtCore, QtGui
 import commondata
 import ftplib
 import socket
+from ask_rename_unit import RenameForm
 
 from update_form import Ui_Dialog
 
@@ -49,6 +50,7 @@ class UpdateForm(QtGui.QDialog):
     
     def LoadButton(self):
         print "Load"
+
         c = self.ui.listWidget2.count()
         #Проверка наличия выбранных элементов для загрузки
         if c==0:
@@ -58,14 +60,13 @@ class UpdateForm(QtGui.QDialog):
         if self.CheckInet()==False:
             self.ui.Statuslabel.setText(u"Нет соединения с интернет. Установите соединение и повторите попытку")
             return
-
+        
         #Загрузка файлов
         #Формирование списка
         fn=[]
         for i in range(c):
             #item - filename in ftp-server
             item=self.ui.listWidget2.item(i).data(1)
-            #iname="\""+item.strip()+"\""
             iname=item.encode("utf8","latin-1")
             print "item=",item,"basename=",os.path.basename(item),"iname=",iname
             fn.append((iname,os.path.basename(item)))
@@ -86,19 +87,42 @@ class UpdateForm(QtGui.QDialog):
         except ftplib.all_errors, err:
             self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
         ftp.quit()
-        
+
         #перемещение полученных файлов в нужные папки
         for fni in fn:
-            if fni[0].find(u"press_templates") != -1:
+            ftp_fn=fni[0].decode("latin1","utf-8")
+
+            if ftp_fn.find(u"press_templates") != -1:
                 #переместить в шаблоны давления
-                #проверка есть файл с таким же именем
-                short_name=fni[1]
-                new_full_name=os.path.join(Commondata.press_template_dir,short_name)
-                if os.path.exists(new_full_name):
-                    #такой файл есть
-                else:
-                    #файла нет, перемещаем
-                    QtCore.QFile.rename(short_name,new_full_name)
+                self.MoveFile(fni[1],self.Commondata.press_template_dir)
+            
+            if ftp_fn.find(u"temp_templates") != -1:
+                #переместить в шаблоны температуры
+                print "temp found"
+                self.MoveFile(fni[1],self.Commondata.temp_template_dir)
+
+    def MoveFile(self,fn,folder):
+        new_full_name=os.path.join(folder,fn)
+        if os.path.exists(new_full_name):
+            #такой файл есть
+            of = RenameForm(self.Commondata,self)
+            of.Prepare(folder,fn)
+            of.exec_()
+            if of.answer==-1:
+                print "Ничего не делать"
+            if of.answer==1:
+                #rename new file
+                new_full_name=os.path.join(folder,of.ui.lineEdit.text())
+                QtCore.QFile.rename(fn,new_full_name)
+            if of.answer==2:
+                #rename old file
+                name_for_old=os.path.join(folder,of.ui.lineEdit.text())
+                QtCore.QFile.rename(new_full_name, name_for_old)
+                #move new file
+                QtCore.QFile.rename(fn,new_full_name)
+        else:
+            #файла нет, перемещаем
+            QtCore.QFile.rename(fn,new_full_name)
 
                     
 
