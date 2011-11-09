@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>711</width>
-    <height>343</height>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,34 +73,41 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <widget class="QPushButton" name="RenameNewpushButton">
        <property name="text">
-        <string>&amp;2. Сохранить загруженный файл под другим именем:</string>
+        <string>&amp;3. Сохранить загруженный файл под другим именем:</string>
        </property>
       </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QPushButton" name="RenameOldpushButton">
-       <property name="text">
-        <string>&amp;3. Переименовать существующий файл:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QLineEdit" name="lineEdit"/>
      </item>
      <item row="8" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QPushButton" name="RenameOldpushButton">
        <property name="text">
-        <string>Имя файла для 2 или 3 го варинта:</string>
+        <string>&amp;4. Переименовать существующий файл:</string>
        </property>
       </widget>
      </item>
      <item row="10" column="0">
+      <widget class="QLineEdit" name="lineEdit"/>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Имя файла для 3 или 4 го варинта:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="11" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="ReplacepushButton">
+       <property name="text">
+        <string>&amp;2. Заместить существующий файл</string>
        </property>
       </widget>
      </item>
