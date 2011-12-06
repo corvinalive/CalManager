@@ -27,7 +27,7 @@ class Commondata:
     def __init__(self):
         self.LoadSetting()
         self.version="0.4"
-        self.apppath=sys.path[0].decode("utf-8","utf-8")
+        self.apppath=sys.path[0].decode(sys.stdout.encoding,"utf-8")
         self.press_template_dir=self.apppath+u"/Шаблоны давление"
         self.temp_template_dir=self.apppath+u"/Шаблоны температура"
         
