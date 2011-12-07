@@ -31,7 +31,7 @@ def Prepare_odt(filename):
 	#copy print.odt to print.temp
     if QtCore.QFile.copy(filename,tempfilename)==False:
         msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u("Ошибка копирования файла "+filename+" во временный файл "+tempfilename))
+        msgBox.setInformativeText(u"Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
         return
@@ -49,14 +49,14 @@ def Prepare_odt(filename):
 	
     if unZip.waitForFinished(5000)==False:
         msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u("Ошибка извлечения файла <content.xml> из файла"+tempfilename))
+        msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла"+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
         return
 	
     if (unZip.exitCode()<>0) :
         msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u("Ошибка извлечения файла <content.xml> из файла "+tempfilename+": unzip вернул ненулевой код выхода"))
+        msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла "+tempfilename+u": unzip вернул ненулевой код выхода")
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
         return
@@ -73,21 +73,21 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
 	
     if unZip.waitForFinished (5000)==False:
         msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u("Ошибка обновления файла <content.xml> в файле "+tempfilename))
+        msgBox.setInformativeText(u"Ошибка обновления файла <content.xml> в файле "+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
         return
     
     if unZip.exitCode() <> 0 :
         msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u("Ошибка обновления <content.xml> в файле "+tempfilename+": zip вернул ненулевой код выхода"))
+        msgBox.setInformativeText(u"Ошибка обновления <content.xml> в файле "+tempfilename+": zip вернул ненулевой код выхода")
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
         return
     
     #create new directory
     dir1 = QtCore.QDir()
-    apppath=sys.path[0].decode("utf-8","utf-8")
+    apppath=sys.path[0].decode(sys.stdout.encoding,"utf-8")
     dir1.cd(apppath)
     DirOk=False
     new_dir=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
