@@ -45,6 +45,7 @@ class MyMainWindow(QtGui.QMainWindow):
         self.connect(self.ui.Setupaction, QtCore.SIGNAL("triggered()"), self.setupButton)
         self.connect(self.ui.Updateaction, QtCore.SIGNAL("triggered()"), self.updateButton)
         self.Commondata = commondata.Commondata()
+        self.setWindowTitle(QtGui.QApplication.translate("MyMainWindow", "CalManager "+self.Commondata.version, None, QtGui.QApplication.UnicodeUTF8))
       
     def pushButtonTemp(self):
         tempform1 = TempForm(self.Commondata,self)

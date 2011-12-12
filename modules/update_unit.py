@@ -49,7 +49,7 @@ class UpdateForm(QtGui.QDialog):
         return True
     
     def LoadButton(self):
-        print "Load"
+        #print "Load"
 
         c = self.ui.listWidget2.count()
         #Проверка наличия выбранных элементов для загрузки
@@ -68,7 +68,7 @@ class UpdateForm(QtGui.QDialog):
             #item - filename in ftp-server
             item=self.ui.listWidget2.item(i).data(1)
             iname=item.encode("utf8","latin-1")
-            print "item=",item,"basename=",os.path.basename(item),"iname=",iname
+            #print "item=",item,"basename=",os.path.basename(item),"iname=",iname
             fn.append((iname,os.path.basename(item)))
             #fn[0] - filename in ftp-server
             #fn[1] - only filename without path
@@ -81,8 +81,8 @@ class UpdateForm(QtGui.QDialog):
 
         try:
             for fni in fn:
-                print "Get file ", fni[0]
-                ftp.retrbinary("RETR "+fni[0], open(fni[1], "w+").write)
+                #print "Get file ", fni[0]
+                ftp.retrbinary("RETR "+fni[0], open(fni[1], "wb+").write)
             self.ui.Statuslabel.setText(u"Выбранные обновления загружены")
         except ftplib.all_errors, err:
             self.ui.Statuslabel.setText(u"Ошибка проверки: "+str(err).decode("utf-8"))
@@ -98,7 +98,7 @@ class UpdateForm(QtGui.QDialog):
             
             if ftp_fn.find(u"temp_templates") != -1:
                 #переместить в шаблоны температуры
-                print "temp found"
+                #print "temp found"
                 self.MoveFile(fni[1],self.Commondata.temp_template_dir)
 
     def MoveFile(self,fn,folder):
@@ -133,11 +133,11 @@ class UpdateForm(QtGui.QDialog):
     def AddButton(self):
         item=self.ui.listWidget1.currentItem()
         if item:
-            print "item"
+            print ""
         else:
             return
         if item.data(1)==None:
-            print "data==None"
+            print ""
             return
         
         c = self.ui.listWidget2.count()
@@ -169,7 +169,7 @@ class UpdateForm(QtGui.QDialog):
             ftp = ftplib.FTP(server,timeout=30)
             ftp.login()
             for fni in fn:
-                print "Get file ", fni[0]
+                #print "Get file ", fni[0]
                 ftp.retrbinary("RETR "+fni[0], open(self.Commondata.apppath+"/"+fni[1], "w+").write)
             ftp.quit()
             self.ui.Statuslabel.setText(u"Список доступных обновлений загружен")

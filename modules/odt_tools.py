@@ -21,7 +21,7 @@
 #       MA 02110-1301, USA.
 
 from PySide import QtCore, QtGui
-import shutil, sys
+import shutil, sys, locale
 
 def Prepare_odt(filename):
     #delete temp file
@@ -63,7 +63,7 @@ def Prepare_odt(filename):
 
 def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
     #обновление content.xml из print.temp
-    print "Prefix1=",Prefix1 
+    #print "Prefix1=",Prefix1 
     arguments =[]
     arguments.append(tempfilename)
     arguments.append("content.xml")
@@ -87,7 +87,7 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
     
     #create new directory
     dir1 = QtCore.QDir()
-    apppath=sys.path[0].decode(sys.stdout.encoding,"utf-8")
+    apppath=sys.path[0].decode(locale.getpreferredencoding(),"utf-8")
     dir1.cd(apppath)
     DirOk=False
     new_dir=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
@@ -109,7 +109,10 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
     else:
         filename+=u".odt"
     
-    shutil.copyfile(tempfilename,filename)
+    #replave to Qt version
+    #shutil.copyfile(tempfilename,filename)
+    #print tempfilename, filename
+    QtCore.QFile.copy(tempfilename,filename)
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
 	    
@@ -129,7 +132,7 @@ def Replace(spisok):
     fl.close()
 
 def GenerateDocument(TemplateFileName, ReplaceList, Prefix):
-    print "Prefix=",Prefix
+    #print "Prefix=",Prefix
     Prepare_odt(TemplateFileName)
     Replace(ReplaceList)
     Save_odt(TemplateFileName+".temp",Prefix1=Prefix)
