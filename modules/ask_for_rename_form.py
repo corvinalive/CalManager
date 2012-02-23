@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ask_for_rename_form.ui'
+# Form implementation generated from reading ui file 'ui/ask_for_rename_form.ui'
 #
-# Created: Mon Nov  7 14:13:54 2011
+# Created: Fri Feb 24 00:06:43 2012
 #      by: pyside-uic 0.2.11 running on PySide 1.0.6
 #
 # WARNING! All changes made in this file will be lost!
