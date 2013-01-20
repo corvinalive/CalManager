@@ -23,7 +23,7 @@
 from PySide import QtCore, QtGui
 import shutil, sys, locale
 
-def Prepare_odt(filename):
+def Prepare_odt(filename,logg=None):
     #delete temp file
     tempfilename=filename+".temp"
     QtCore.QFile.remove(tempfilename)
@@ -61,7 +61,7 @@ def Prepare_odt(filename):
         msgBox.exec_()
         return
 
-def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
+def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=None):
     #обновление content.xml из print.temp
     #print "Prefix1=",Prefix1 
     arguments =[]
@@ -108,15 +108,19 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None):
         filename+=" "+Postfix1+u".odt"
     else:
         filename+=u".odt"
+
+    logg.info(u"destination fn "+filename)
+    logg.info(u"tempfilename "+tempfilename)
+
+    result = QtCore.QFile.copy(tempfilename,filename)
+    if(result==False):
+        logg.error(u'QtCore.QFile.copy ERROR')
+    #time.sleep(5)
     
-    #replave to Qt version
-    #shutil.copyfile(tempfilename,filename)
-    #print tempfilename, filename
-    QtCore.QFile.copy(tempfilename,filename)
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
 	    
-def Replace(spisok):
+def Replace(spisok,logg=None):
     #Функция замены слов в odt-файле
     #Нач. условия: файл content.xml лежит в текущей директории;
     #Принимаемый параметр: кортеж из пар (что_менять, на_что_поменять)
@@ -131,11 +135,11 @@ def Replace(spisok):
     fl.write(flstr.encode("UTF-8"))
     fl.close()
 
-def GenerateDocument(TemplateFileName, ReplaceList, Prefix):
-    #print "Prefix=",Prefix
-    Prepare_odt(TemplateFileName)
-    Replace(ReplaceList)
-    Save_odt(TemplateFileName+".temp",Prefix1=Prefix)
+def GenerateDocument(TemplateFileName, ReplaceList, Prefix, logg=None):
+    logg.info(u"TemplateFileName="+TemplateFileName+u" Prefix"+Prefix)
+    Prepare_odt(TemplateFileName,logg=logg)
+    Replace(ReplaceList,logg=logg)
+    Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=logg)
 
 	
 def main():

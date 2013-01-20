@@ -405,9 +405,9 @@ class PressForm(QtGui.QWidget):
           
             
     def print_button_clicked(self):
-        print "Print"
         fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.press_template_dir, u"Файл-шаблон (*.odt)")
         if os.path.exists(fileName[0])==False:
+            cd.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
             return
         #Заполняем список для замены
         a = []
@@ -640,5 +640,5 @@ class PressForm(QtGui.QWidget):
         ss="%.3f"%self.maxv
         a.append((u"m-axv",ss))
 
-        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление")
+        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",logg = self.Commondata.logging)
 

@@ -22,15 +22,29 @@
 
 from PySide import QtCore
 import sys, os, locale
+import logging
 
 class Commondata:
     def __init__(self):
+        logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
+                            level = logging.DEBUG, filename = u'calmanager.log')
+        self.logging = logging
+        
         self.LoadSetting()
         self.version="0.4.1"
+        logging.info(u"Calmanager version "+str(self.version))
+        
         self.kod1=locale.getpreferredencoding()
+        logging.info(u"locale.getpreferredencoding "+str(self.kod1))
+        
         self.apppath=sys.path[0].decode(self.kod1,"utf-8")
+        logging.info(u"locale.getpreferredencoding "+self.apppath)
+        
         self.press_template_dir=os.path.join(self.apppath,u"Шаблоны давление")
+        logging.info(u"press_template_dir "+self.press_template_dir)
+        
         self.temp_template_dir=os.path.join(self.apppath,u"Шаблоны температура")
+        logging.info(u"temp_template_dir "+self.temp_template_dir)
 
     def LoadSetting(self):
         #print "Load setting"
