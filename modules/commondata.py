@@ -26,11 +26,12 @@ import logging
 
 class Commondata:
     def __init__(self):
+        self.LoadSetting()
+           
         logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
-                            level = logging.DEBUG, filename = u'calmanager.log')
+                            level = self.loglevel, filename = u'calmanager.log')
         self.logging = logging
         
-        self.LoadSetting()
         self.version="0.4.1"
         logging.info(u"Calmanager version "+str(self.version))
         
@@ -51,6 +52,7 @@ class Commondata:
         qs = QtCore.QSettings("calmanager.ini", QtCore.QSettings.IniFormat)
         #read name of server
         self.servername=qs.value("update/server","")
+        self.loglevel=int(qs.value("update/loglevel",40))
         size = qs.beginReadArray("companies")
         self.Companies=[]
         for i in range(size):

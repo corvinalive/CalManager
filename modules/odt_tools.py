@@ -21,7 +21,7 @@
 #       MA 02110-1301, USA.
 
 from PySide import QtCore, QtGui
-import shutil, sys, locale
+import shutil, sys, locale, time
 
 def Prepare_odt(filename,logg=None):
     #delete temp file
@@ -115,7 +115,7 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     result = QtCore.QFile.copy(tempfilename,filename)
     if(result==False):
         logg.error(u'QtCore.QFile.copy ERROR')
-    time.sleep(5)
+    time.sleep(0.5)
     
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
