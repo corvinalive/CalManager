@@ -38,7 +38,7 @@ class Commondata:
         logging.info(u"locale.getpreferredencoding "+str(self.kod1))
         
         self.apppath=sys.path[0].decode(self.kod1,"utf-8")
-        logging.info(u"locale.getpreferredencoding "+self.apppath)
+        logging.info(u"Путь к программе "+self.apppath)
         
         self.press_template_dir=os.path.join(self.apppath,u"Шаблоны давление")
         logging.info(u"press_template_dir "+self.press_template_dir)

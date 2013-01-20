@@ -115,7 +115,7 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     result = QtCore.QFile.copy(tempfilename,filename)
     if(result==False):
         logg.error(u'QtCore.QFile.copy ERROR')
-    #time.sleep(5)
+    time.sleep(5)
     
     QtCore.QFile.remove(tempfilename)
     QtCore.QFile.remove("content.xml")
@@ -136,7 +136,7 @@ def Replace(spisok,logg=None):
     fl.close()
 
 def GenerateDocument(TemplateFileName, ReplaceList, Prefix, logg=None):
-    logg.info(u"TemplateFileName="+TemplateFileName+u" Prefix"+Prefix)
+    logg.info(u"TemplateFileName="+TemplateFileName+u" Prefix="+Prefix)
     Prepare_odt(TemplateFileName,logg=logg)
     Replace(ReplaceList,logg=logg)
     Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=logg)
