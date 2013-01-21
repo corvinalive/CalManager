@@ -92,6 +92,9 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     DirOk=False
     new_dir=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
     DirOk=dir1.mkpath(new_dir)
+
+    if(DirOk == False):
+        logg.error(u"Ошибка создания папки "+new_dir)
     
 
     if Prefix1==None:
@@ -99,10 +102,11 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     else:
         Prefix1+=" "
 
+    current_time_str = QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss")
     if DirOk :
-        filename=apppath+"/"+new_dir+"/"+Prefix1+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
+        filename=apppath+"/"+new_dir+"/"+Prefix1+current_time_str
     else:
-        filename=apppath+"/"+Prefix+(QtCore.QDateTime.currentDateTime ().toString(u"hh mm ss"))
+        filename=apppath+"/"+Prefix+current_time_str
         
     if Postfix1:
         filename+=" "+Postfix1+u".odt"
@@ -112,12 +116,14 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     logg.info(u"destination fn "+filename)
     logg.info(u"tempfilename "+tempfilename)
 
-    result = QtCore.QFile.copy(tempfilename,filename)
-    if(result==False):
-        logg.error(u'QtCore.QFile.copy ERROR')
-    time.sleep(0.5)
+    #result = QtCore.QFile.copy(tempfilename,filename)
+    #if(result==False):
+    #    logg.error(u'QtCore.QFile.copy ERROR')
+    #time.sleep(0.5)
     
-    QtCore.QFile.remove(tempfilename)
+    #QtCore.QFile.remove(tempfilename)
+    if ( QtCore.QFile.rename(tempfilename, filename)== False):
+        logg.error(u"Оштбка переименования файла из "+tempfilename+u" в "+filename)
     QtCore.QFile.remove("content.xml")
 	    
 def Replace(spisok,logg=None):
