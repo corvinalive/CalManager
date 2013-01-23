@@ -74,6 +74,7 @@ def main():
     sys.path.append(os.path.join(sys.path[0],"modules"))
     app = QtGui.QApplication(sys.argv)
     myapp = MyMainWindow()
+    myapp.setWindowIcon(QtGui.QIcon("modules/document_4244.ico"))
     myapp.show()
     result=app.exec_()
     sys.exit(result)
