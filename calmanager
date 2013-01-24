@@ -20,7 +20,7 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
    
-import struct, sys, os
+import struct, sys, os, logging
 from PySide import QtCore, QtGui
 
 sys.path.append(os.path.join(sys.path[0],"modules"))
@@ -70,10 +70,49 @@ class MyMainWindow(QtGui.QMainWindow):
         #of.Prepare()
         of.exec_()
 
+def str_mode_to_int(mode):
+    l = len(mode)
+    stepen = 1
+    value = 0
+    for i in range(l):
+        q=int(mode[l-i-1])
+        value+=q*stepen
+        stepen = stepen*8
+    return value
+    
+def CreateDesktop(Commondata):
+    f = open('Calmanager.desktop','wb')
+    f.write(u'[Desktop Entry]\n')
+    f.write(u'Version='+str(Commondata.version)+u'\n')
+    f.write(u'Encoding=UTF-8\n')
+    f.write(u'Name=Calmanager\n')
+    f.write(u'Type=Application\n')
+    ee= os.path.join(unicode(sys.path[0],"utf-8"),u'calmanager')
+    logging.debug(ee)
+    zz=u'Exec=python \"'+ee+'\"\n'
+    logging.debug(zz)
+    f.write(zz.encode('utf-8'))
+    zz=u'Path='+Commondata.apppath+'\n'
+    f.write(zz.encode('utf-8'))
+    zz='Icon='+os.path.join(Commondata.apppath,'modules/document_4244.ico\n')
+    f.write(zz.encode('utf-8'))
+    f.write(u'X-GNOME-DocPath=\n')
+    f.write(u'Terminal=false\n')
+    f.write(u'Comment=CalManager\n')
+    f.write(u'Name[ru]=Calmanager\n')
+    f.close()
+    os.chmod('Calmanager.desktop',str_mode_to_int('744'))
+
+
 def main():
     sys.path.append(os.path.join(sys.path[0],"modules"))
+       
     app = QtGui.QApplication(sys.argv)
     myapp = MyMainWindow()
+
+    if sys.platform.startswith('win')==False :
+        CreateDesktop(myapp.Commondata)
+            
     myapp.setWindowIcon(QtGui.QIcon("modules/document_4244.ico"))
     myapp.show()
     result=app.exec_()
