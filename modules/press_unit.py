@@ -536,84 +536,71 @@ class PressForm(QtGui.QWidget):
         else:
             ss="%.3f"%self.ui.i6d.value()
             a.append((u"tabl64",ss))
-        #погрешность прямой ход, мА
+        #погрешность прямой и обратный ходы, вариация, %
         #First point
-        v=4
-        v16=16
+        def CalcError(realvalue, mastervalue):
+            d=100* ( realvalue - mastervalue) / 16.0
+            ss = "%.3f"%d
+            return ss
+        def CalcVariation(i1,i2):
+            v=100.0*(i1-i2)/16.0
+            if(v < 0 ):
+                v*= -1
+            ss = "%.3f"%v
+            return ss
+                
+        v=4.0
+        v16=16.0
+        
         i=self.ui.i1u.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl15",ss))
-        var=i
+        a.append((u"tabl15",CalcError(i,v)))
+
+        i1=i
         i=self.ui.i1d.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl16",ss))
-        var-=i
-        if(var<0):
-            var*=-1
-        ss="%.3f"%var
-        a.append((u"tabl17",ss))
+        a.append((u"tabl16",CalcError(i,v)))
+
+        a.append((u"tabl17",CalcVariation(i1,i)))
+        
         v=(v16)/(self.col_points-1)+4
         i=self.ui.i2u.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl25",ss))
-        var=i
+        a.append((u"tabl25",CalcError(i,v)))
+        
+        i1=i
         i=self.ui.i2d.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl26",ss))
-        var-=i
-        if(var<0):
-            var*=-1
-        ss="%.3f"%var
-        a.append((u"tabl27",ss))
+        a.append((u"tabl26",CalcError(i,v)))
+        
+        a.append((u"tabl27",CalcVariation(i1,i)))
+        
         v=(2*v16)/(self.col_points-1)+4
         i=self.ui.i3u.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl35",ss))
-        var=i
+        a.append((u"tabl35",CalcError(i,v)))
+
+        i1=i
         i=self.ui.i3d.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl36",ss))
-        var-=i
-        if(var<0):
-            var*=-1
-        ss="%.3f"%var
-        a.append((u"tabl37",ss))
+        a.append((u"tabl36",CalcError(i,v)))
+
+        a.append((u"tabl37",CalcVariation(i1,i)))
+        
         v=(3*v16)/(self.col_points-1)+4
         i=self.ui.i4u.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl45",ss))
-        var=i
+        a.append((u"tabl45",CalcError(i,v)))
+        
+        i1=i
         i=self.ui.i4d.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl46",ss))
-        var-=i
-        if(var<0):
-            var*=-1
-        ss="%.3f"%var
-        a.append((u"tabl47",ss))
+        a.append((u"tabl46",CalcError(i,v)))
+
+        a.append((u"tabl47",CalcVariation(i1,i)))
+        
         v=(4*v16)/(self.col_points-1)+4
         i=self.ui.i5u.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl55",ss))
-        var=i
+        a.append((u"tabl55",CalcError(i,v)))
+
+        i1=i
         i=self.ui.i5d.value()
-        d=(i-v)
-        ss="%.3f"%d
-        a.append((u"tabl56",ss))
-        var-=i
-        if(var<0):
-            var*=-1
-        ss="%.3f"%var
-        a.append((u"tabl57",ss))
+        a.append((u"tabl56",CalcError(i,v)))
+
+        a.append((u"tabl57",CalcVariation(i1,i)))
+        
         if (self.col_points==5):
             a.append((u"tabl65",""))
             a.append((u"tabl66",""))
@@ -621,19 +608,14 @@ class PressForm(QtGui.QWidget):
         else:
             v=20
             i=self.ui.i6u.value()
-            d=(i-v)
-            ss="%.3f"%d
-            a.append((u"tabl65",ss))
-            var=i
+            a.append((u"tabl65",CalcError(i,v)))
+            
+            i1=i
             i=self.ui.i6d.value()
-            d=(i-v)
-            ss="%.3f"%d
-            a.append((u"tabl66",ss))
-            var-=i
-            if(var<0):
-                var*=-1
-            ss="%.3f"%var
-            a.append((u"tabl67",ss))
+            a.append((u"tabl66",CalcError(i,v)))
+
+            a.append((u"tabl67",CalcVariation(i1,i)))
+            
         ss="%.3f"%self.maxp
         a.append((u"ma-xd",ss))
         ss="%.3f"%self.maxv
