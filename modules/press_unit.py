@@ -430,8 +430,7 @@ class PressForm(QtGui.QWidget):
         ss=self.ui.dateEdit.date().toString("yyyy")
         a.append((u"ywhen",ss))
         
-        ss=str(self.ui.dateEdit.date().year()+1)
-        #ss.setNum(yearbefore);
+        ss=str(self.ui.dateEdit.date().year()+int(self.ui.interval_box.value()))
         a.append((u"ybefore", ss))
         a.append((u"pribor",self.ui.NameBox.currentText()))
         a.append((u"kleimo",self.ui.KleimoEdit.text()))

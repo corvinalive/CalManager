@@ -21,7 +21,7 @@
 #       MA 02110-1301, USA.
 
 from PySide import QtCore, QtGui
-import shutil, sys, locale, time
+import shutil, sys, locale, time, shutil
 
 def Prepare_odt(filename,logg=None):
     #delete temp file
@@ -113,18 +113,15 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
     else:
         filename+=u".odt"
 
-    logg.info(u"destination fn "+filename)
-    logg.info(u"tempfilename "+tempfilename)
+    logg.info(u"Имя файла с результатом: "+filename)
+    logg.info(u"Имя временного файла: "+tempfilename)
 
-    #result = QtCore.QFile.copy(tempfilename,filename)
-    #if(result==False):
-    #    logg.error(u'QtCore.QFile.copy ERROR')
-    #time.sleep(0.5)
-    
-    #QtCore.QFile.remove(tempfilename)
-    if ( QtCore.QFile.rename(tempfilename, filename)== False):
-        logg.error(u"Оштбка переименования файла из "+tempfilename+u" в "+filename)
+    shutil.copy(tempfilename,filename)
+
+#    if ( QtCore.QFile.rename(tempfilename, "\""+filename+"\"")== False):
+#        logg.error(u"Ошибка переименования файла из "+tempfilename+u" в "+filename)
     QtCore.QFile.remove("content.xml")
+    QtCore.QFile.remove(tempfilename)
 	    
 def Replace(spisok,logg=None):
     #Функция замены слов в odt-файле
