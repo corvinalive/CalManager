@@ -68,8 +68,9 @@ class Commondata:
         for i in range(size):
             qs.setArrayIndex(i)
             Name = qs.value("FIO")
+            Doverennost = qs.value("TrustNo")
             #print Name
-            self.Poveriteli.append(Name)
+            self.Poveriteli.append((Name,Doverennost))
         qs.endArray()
 
         size = qs.beginReadArray("PModeli")
@@ -107,7 +108,8 @@ class Commondata:
         c = len(self.Poveriteli)
         for i in range(c):
             qs.setArrayIndex(i)
-            qs.setValue("FIO", self.Poveriteli[i])
+            qs.setValue("FIO", self.Poveriteli[i][0])
+            qs.setValue("TrustNo",self.Poveriteli[i][1])
         qs.endArray()
 
         size = qs.beginWriteArray("PModeli")

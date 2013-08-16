@@ -92,7 +92,7 @@ class TempForm(QtGui.QWidget):
             self.ui.PoverBox.clear()
             self.ui.PoverBox.addItem("")
             for i in self.Commondata.Poveriteli:
-                self.ui.PoverBox.addItem(i)
+                self.ui.PoverBox.addItem(i[0])
             
         vv=16
         #//fill temp values
@@ -267,6 +267,14 @@ class TempForm(QtGui.QWidget):
         a.append((u"inn-inn-inn", self.ui.INNEdit.text()))
         a.append((u"VLAGA", self.ui.water_box.text()))
         a.append((u"POVER", self.ui.PoverBox.currentText()))
+
+        pov_name = self.ui.PoverBox.currentText()
+        TrustNo=u""
+        for pover in self.Commondata.Poveriteli:
+            if pover[0] == pov_name :
+                TrustNo=pover[1]
+                break
+        a.append((u"TrustNo",TrustNo))        
         
         ss = str(self.min)
         a.append((u"MIN", ss))

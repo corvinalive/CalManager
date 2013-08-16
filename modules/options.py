@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'ui/options.ui'
 #
-# Created: Sun Jan 20 22:06:59 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Aug 16 21:58:41 2013
+#      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -46,6 +46,7 @@ class Ui_OptionsDialog(object):
         self.CompanyTableWidget.setHorizontalHeaderItem(0, item)
         item = QtGui.QTableWidgetItem()
         self.CompanyTableWidget.setHorizontalHeaderItem(1, item)
+        self.CompanyTableWidget.horizontalHeader().setDefaultSectionSize(300)
         self.lay.addWidget(self.CompanyTableWidget)
         self.AddButton = QtGui.QPushButton(self.verticalLayoutWidget)
         self.AddButton.setFlat(False)
@@ -69,12 +70,15 @@ class Ui_OptionsDialog(object):
         self.PovTableWidget.setSelectionMode(QtGui.QAbstractItemView.SingleSelection)
         self.PovTableWidget.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.PovTableWidget.setRowCount(2)
-        self.PovTableWidget.setColumnCount(1)
+        self.PovTableWidget.setColumnCount(2)
         self.PovTableWidget.setObjectName("PovTableWidget")
-        self.PovTableWidget.setColumnCount(1)
+        self.PovTableWidget.setColumnCount(2)
         self.PovTableWidget.setRowCount(2)
         item = QtGui.QTableWidgetItem()
         self.PovTableWidget.setHorizontalHeaderItem(0, item)
+        item = QtGui.QTableWidgetItem()
+        self.PovTableWidget.setHorizontalHeaderItem(1, item)
+        self.PovTableWidget.horizontalHeader().setDefaultSectionSize(300)
         self.verticalLayout_3.addWidget(self.PovTableWidget)
         self.AddPovButton = QtGui.QPushButton(self.verticalLayoutWidget_3)
         self.AddPovButton.setObjectName("AddPovButton")
@@ -102,6 +106,7 @@ class Ui_OptionsDialog(object):
         self.PTableWidget.setRowCount(2)
         item = QtGui.QTableWidgetItem()
         self.PTableWidget.setHorizontalHeaderItem(0, item)
+        self.PTableWidget.horizontalHeader().setDefaultSectionSize(400)
         self.verticalLayout_4.addWidget(self.PTableWidget)
         self.PAddButton = QtGui.QPushButton(self.verticalLayoutWidget_4)
         self.PAddButton.setObjectName("PAddButton")
@@ -129,6 +134,7 @@ class Ui_OptionsDialog(object):
         self.tTableWidget.setRowCount(2)
         item = QtGui.QTableWidgetItem()
         self.tTableWidget.setHorizontalHeaderItem(0, item)
+        self.tTableWidget.horizontalHeader().setDefaultSectionSize(400)
         self.verticalLayout_5.addWidget(self.tTableWidget)
         self.tAddButton = QtGui.QPushButton(self.verticalLayoutWidget_5)
         self.tAddButton.setObjectName("tAddButton")
@@ -166,7 +172,8 @@ class Ui_OptionsDialog(object):
         self.AddButton.setText(QtGui.QApplication.translate("OptionsDialog", "Добавить", None, QtGui.QApplication.UnicodeUTF8))
         self.DeleteButton.setText(QtGui.QApplication.translate("OptionsDialog", "Удалить", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QtGui.QApplication.translate("OptionsDialog", "Компании", None, QtGui.QApplication.UnicodeUTF8))
-        self.PovTableWidget.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("OptionsDialog", "ФИО", None, QtGui.QApplication.UnicodeUTF8))
+        self.PovTableWidget.horizontalHeaderItem(0).setText(QtGui.QApplication.translate("OptionsDialog", "И.О. Фамилия", None, QtGui.QApplication.UnicodeUTF8))
+        self.PovTableWidget.horizontalHeaderItem(1).setText(QtGui.QApplication.translate("OptionsDialog", "Доверенность", None, QtGui.QApplication.UnicodeUTF8))
         self.AddPovButton.setText(QtGui.QApplication.translate("OptionsDialog", "Добавить", None, QtGui.QApplication.UnicodeUTF8))
         self.DeletePovButton.setText(QtGui.QApplication.translate("OptionsDialog", "Удалить", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("OptionsDialog", "Поверители", None, QtGui.QApplication.UnicodeUTF8))

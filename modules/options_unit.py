@@ -50,7 +50,7 @@ class OptionsForm(QtGui.QDialog):
         self.connect(self.ui.buttonBox, QtCore.SIGNAL("accepted()"), self.ok_button_clicked)
                
     def Prepare(self):
-        print "Prepare"
+
         self.ui.CompanyTableWidget.setRowCount(len(self.Commondata.Companies))
         counter=0
         for i in self.Commondata.Companies:
@@ -75,10 +75,18 @@ class OptionsForm(QtGui.QDialog):
         for i in self.Commondata.Poveriteli:
             tvi=self.ui.PovTableWidget.item(counter,0)
             if tvi:
-                tvi.setText(i)
+                tvi.setText(i[0])
             else:
-                tvi=QtGui.QTableWidgetItem(i)
+                tvi=QtGui.QTableWidgetItem(i[0])
                 self.ui.PovTableWidget.setItem(counter,0,tvi)
+
+            tvi=self.ui.PovTableWidget.item(counter,1)
+            if tvi:
+                tvi.setText(i[1])
+            else:
+                tvi=QtGui.QTableWidgetItem(i[1])
+                self.ui.PovTableWidget.setItem(counter,1,tvi)
+
             counter+=1
         #Заполнение списка PModeli
         self.ui.PTableWidget.setRowCount(len(self.Commondata.PModeli))
@@ -147,7 +155,9 @@ class OptionsForm(QtGui.QDialog):
         c=self.ui.PovTableWidget.rowCount()
         self.Commondata.Poveriteli=[]
         for i in range(c):
-            self.Commondata.Poveriteli.append(self.ui.PovTableWidget.item(i,0).text())
+            Name=self.ui.PovTableWidget.item(i,0).text()
+            TrustNo=self.ui.PovTableWidget.item(i,1).text()
+            self.Commondata.Poveriteli.append((Name,TrustNo))
         #Запись списка PModeli
         c=self.ui.PTableWidget.rowCount()
         self.Commondata.PModeli=[]

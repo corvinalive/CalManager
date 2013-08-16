@@ -77,6 +77,9 @@
            <property name="columnCount">
             <number>2</number>
            </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>300</number>
+           </attribute>
            <row/>
            <column>
             <property name="text">
@@ -142,13 +145,21 @@
             <number>2</number>
            </property>
            <property name="columnCount">
-            <number>1</number>
+            <number>2</number>
            </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>300</number>
+           </attribute>
            <row/>
            <row/>
            <column>
             <property name="text">
-             <string>ФИО</string>
+             <string>И.О. Фамилия</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Доверенность</string>
             </property>
            </column>
           </widget>
@@ -201,6 +212,9 @@
            <property name="columnCount">
             <number>1</number>
            </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>400</number>
+           </attribute>
            <row/>
            <row/>
            <column>
@@ -258,6 +272,9 @@
            <property name="columnCount">
             <number>1</number>
            </property>
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>400</number>
+           </attribute>
            <row/>
            <row/>
            <column>

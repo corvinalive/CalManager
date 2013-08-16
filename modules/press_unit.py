@@ -84,7 +84,7 @@ class PressForm(QtGui.QWidget):
             self.ui.PoverBox.clear()
             self.ui.PoverBox.addItem("")
             for i in self.Commondata.Poveriteli:
-                self.ui.PoverBox.addItem(i)
+                self.ui.PoverBox.addItem(i[0])
                 
         self.col_points=self.ui.col_pointsBox.value()
         vv=16.0
@@ -444,7 +444,14 @@ class PressForm(QtGui.QWidget):
         a.append((u"pover", self.ui.PoverBox.currentText()))
         a.append((u"klass", str(self.ui.KlassBox.value())))
         a.append((u"unit", self.ui.UnitBox.currentText()))
-        
+
+        pov_name = self.ui.PoverBox.currentText()
+        TrustNo=u""
+        for pover in self.Commondata.Poveriteli:
+            if pover[0] == pov_name :
+                TrustNo=pover[1]
+                break
+        a.append((u"TrustNo",TrustNo))
         
         ss = str(self.min)
         a.append((u"range_min", ss))

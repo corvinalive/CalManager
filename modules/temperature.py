@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'ui/temperature.ui'
 #
-# Created: Sun Jan 20 22:06:59 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Aug 16 21:58:42 2013
+#      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
 
