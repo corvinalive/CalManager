@@ -25,6 +25,7 @@ from PySide import QtCore, QtGui
 import commondata, odt_tools
 
 from pressure import Ui_PressForm
+import selecttemplate_unit
 
 class PressForm(QtGui.QWidget):
     def __init__(self,cd,parent=None):
@@ -405,6 +406,9 @@ class PressForm(QtGui.QWidget):
           
             
     def print_button_clicked(self):
+        sel_obj = selecttemplate_unit.SelectTemplate(cd=self.Commondata, parent=self)
+        sel_obj.Select(self.Commondata.press_template_dir)
+        del sel_obj
         fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.press_template_dir, u"Файл-шаблон (*.odt)")
         if os.path.exists(fileName[0])==False:
             cd.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
