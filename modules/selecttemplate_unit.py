@@ -37,12 +37,27 @@ class SelectTemplate(QtGui.QDialog):
 
     def Select(self,TemplateDir):
         print "Select in ",TemplateDir
+        filelist = os.listdir(TemplateDir)
+        filelistlen=len(filelist)
+        if  filelistlen==0 :
+            return
+        self.ui.TemplateList.clear()
+        for f in filelist:
+            print f
+            if f.endswith(u".odt"):
+                lbl=os.path.split(f)[1]
+                lbl=os.path.splitext(lbl)[0]
+                lwi = QtGui.QListWidgetItem(lbl)
+                lwi.setData(QtCore.Qt.UserRole, os.path.join(TemplateDir,f))
+                self.ui.TemplateList.addItem(lwi)
         self.exec_()
                
     def Prepare(self):
         print "Prepare select template"
 
-
     def ok_button_clicked (self):
+        si= self.ui.TemplateList.selectedItems()
+        for sii in si:
+            print sii.data(QtCore.Qt.UserRole)
         print "Select template ok"
 

@@ -46,6 +46,8 @@ class Commondata:
         
         self.temp_template_dir=os.path.join(self.apppath,u"Шаблоны температура")
         logging.info(u"temp_template_dir "+self.temp_template_dir)
+        self.PressLastTemplateIndex=-1
+        self.TempLastTemplateIndex=-1
 
     def LoadSetting(self):
         #print "Load setting"
