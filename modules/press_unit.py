@@ -407,9 +407,11 @@ class PressForm(QtGui.QWidget):
             
     def print_button_clicked(self):
         sel_obj = selecttemplate_unit.SelectTemplate(cd=self.Commondata, parent=self)
-        sel_obj.Select(self.Commondata.press_template_dir)
+        fileName = sel_obj.Select(self.Commondata.PressTemplates,self.Commondata.PressLastTemplateIndex)
+        if fileName is None:
+            return
+        self.Commondata.PressLastTemplateIndex=fileName[1]
         del sel_obj
-        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.press_template_dir, u"Файл-шаблон (*.odt)")
         if os.path.exists(fileName[0])==False:
             cd.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
             return
@@ -632,5 +634,8 @@ class PressForm(QtGui.QWidget):
         ss="%.3f"%self.maxv
         a.append((u"m-axv",ss))
 
-        odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",logg = self.Commondata.logging)
+        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",logg = self.Commondata.logging)==True):
+            self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" сформирован протокол датчик №"+self.ui.SerialEdit.text())
+        else:
+            self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" ошибка формирования протокол датчика №"+self.ui.SerialEdit.text())
 

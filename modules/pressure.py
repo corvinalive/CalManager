@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/pressure.ui'
 #
-# Created: Fri Aug 16 21:58:41 2013
+# Created: Tue Aug 20 22:53:32 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,8 +12,8 @@ from PySide import QtCore, QtGui
 class Ui_PressForm(object):
     def setupUi(self, PressForm):
         PressForm.setObjectName("PressForm")
-        PressForm.resize(870, 400)
-        PressForm.setMinimumSize(QtCore.QSize(870, 400))
+        PressForm.resize(870, 430)
+        PressForm.setMinimumSize(QtCore.QSize(870, 430))
         self.gridLayout_5 = QtGui.QGridLayout(PressForm)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.PrintButton = QtGui.QPushButton(PressForm)
@@ -28,7 +28,7 @@ class Ui_PressForm(object):
         self.label_19.setGeometry(QtCore.QRect(418, 123, 117, 18))
         self.label_19.setObjectName("label_19")
         self.layoutWidget = QtGui.QWidget(self.tab)
-        self.layoutWidget.setGeometry(QtCore.QRect(418, 279, 217, 25))
+        self.layoutWidget.setGeometry(QtCore.QRect(418, 279, 220, 25))
         self.layoutWidget.setObjectName("layoutWidget")
         self.horizontalLayout = QtGui.QHBoxLayout(self.layoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -639,6 +639,21 @@ class Ui_PressForm(object):
         self.col_pointsBox.setObjectName("col_pointsBox")
         self.tabWidget.addTab(self.tab_2, "")
         self.gridLayout_5.addWidget(self.tabWidget, 0, 0, 1, 1)
+        self.statusLabel = QtGui.QLabel(PressForm)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 85, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 85, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(159, 158, 158))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        self.statusLabel.setPalette(palette)
+        self.statusLabel.setText("")
+        self.statusLabel.setObjectName("statusLabel")
+        self.gridLayout_5.addWidget(self.statusLabel, 3, 0, 1, 1)
 
         self.retranslateUi(PressForm)
         self.tabWidget.setCurrentIndex(0)

@@ -34,7 +34,7 @@ def Prepare_odt(filename,logg=None):
         msgBox.setInformativeText(u"Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
-        return
+        return False
 	
 	#delete content.xml		
     QtCore.QFile.remove("content.xml")
@@ -52,14 +52,15 @@ def Prepare_odt(filename,logg=None):
         msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла"+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
-        return
+        return False
 	
     if (unZip.exitCode()<>0) :
         msgBox = QtGui.QMessageBox()
         msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла "+tempfilename+u": unzip вернул ненулевой код выхода")
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
-        return
+        return False
+    return True
 
 def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=None):
     #обновление content.xml из print.temp
@@ -76,14 +77,14 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
         msgBox.setInformativeText(u"Ошибка обновления файла <content.xml> в файле "+tempfilename)
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
-        return
+        return False
     
     if unZip.exitCode() <> 0 :
         msgBox = QtGui.QMessageBox()
         msgBox.setInformativeText(u"Ошибка обновления <content.xml> в файле "+tempfilename+": zip вернул ненулевой код выхода")
         msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
         msgBox.exec_()
-        return
+        return False
     
     #create new directory
     dir1 = QtCore.QDir()
@@ -118,10 +119,9 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
 
     shutil.copy(tempfilename,filename)
 
-#    if ( QtCore.QFile.rename(tempfilename, "\""+filename+"\"")== False):
-#        logg.error(u"Ошибка переименования файла из "+tempfilename+u" в "+filename)
     QtCore.QFile.remove("content.xml")
     QtCore.QFile.remove(tempfilename)
+    return True
 	    
 def Replace(spisok,logg=None):
     #Функция замены слов в odt-файле
@@ -137,12 +137,16 @@ def Replace(spisok,logg=None):
     fl.truncate(0)
     fl.write(flstr.encode("UTF-8"))
     fl.close()
+    return True
 
 def GenerateDocument(TemplateFileName, ReplaceList, Prefix, logg=None):
     logg.info(u"TemplateFileName="+TemplateFileName+u" Prefix="+Prefix)
-    Prepare_odt(TemplateFileName,logg=logg)
-    Replace(ReplaceList,logg=logg)
-    Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=logg)
+    res_ok=False
+    if (Prepare_odt(TemplateFileName,logg=logg)==True):
+        if (Replace(ReplaceList,logg=logg)==True):
+            if (Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=logg)==True):
+                return True
+    return False
 
 	
 def main():

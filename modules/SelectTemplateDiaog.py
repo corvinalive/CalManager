@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/SelectTemplateDialog.ui'
 #
-# Created: Sat Aug 17 23:00:11 2013
+# Created: Mon Aug 19 23:59:59 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,14 +14,17 @@ class Ui_SelectTemplateDialog(object):
         SelectTemplateDialog.setObjectName("SelectTemplateDialog")
         SelectTemplateDialog.setWindowModality(QtCore.Qt.ApplicationModal)
         SelectTemplateDialog.resize(712, 463)
+        SelectTemplateDialog.setModal(False)
         self.gridLayout = QtGui.QGridLayout(SelectTemplateDialog)
         self.gridLayout.setObjectName("gridLayout")
         self.buttonBox = QtGui.QDialogButtonBox(SelectTemplateDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setCenterButtons(True)
         self.buttonBox.setObjectName("buttonBox")
         self.gridLayout.addWidget(self.buttonBox, 2, 0, 1, 2)
         self.label = QtGui.QLabel(SelectTemplateDialog)
+        self.label.setWordWrap(True)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
         self.TemplateList = QtGui.QListWidget(SelectTemplateDialog)

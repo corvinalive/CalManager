@@ -33,31 +33,49 @@ class SelectTemplate(QtGui.QDialog):
         self.ui.setupUi(self)
         self.Commondata = cd
 
-        self.connect(self.ui.buttonBox, QtCore.SIGNAL("accepted()"), self.ok_button_clicked)
+        self.connect(self.ui.TemplateList, QtCore.SIGNAL("currentRowChanged(int)"), self.row_changed)
+        self.connect(self.ui.TemplateList, QtCore.SIGNAL("itemDoubleClicked(QListWidgetItem*)"), self.dblclick)
 
-    def Select(self,TemplateDir):
-        print "Select in ",TemplateDir
-        filelist = os.listdir(TemplateDir)
-        filelistlen=len(filelist)
-        if  filelistlen==0 :
-            return
+    def dblclick(self,lwi):
+        self.accept()
+         
+
+    def Select(self,Templates,index):
+        if len(Templates)<1:
+            return ("",-1)
+
+        if len(Templates)==1:
+            return ((Templates[0])[1],0)
+            
         self.ui.TemplateList.clear()
-        for f in filelist:
-            print f
-            if f.endswith(u".odt"):
-                lbl=os.path.split(f)[1]
-                lbl=os.path.splitext(lbl)[0]
-                lwi = QtGui.QListWidgetItem(lbl)
-                lwi.setData(QtCore.Qt.UserRole, os.path.join(TemplateDir,f))
-                self.ui.TemplateList.addItem(lwi)
-        self.exec_()
-               
-    def Prepare(self):
-        print "Prepare select template"
+        for f in Templates:
+            lwi = QtGui.QListWidgetItem(f[0])
+            lwi.setData(QtCore.Qt.UserRole, f)
+            self.ui.TemplateList.addItem(lwi)
+        if index<0:
+            index=0
 
-    def ok_button_clicked (self):
-        si= self.ui.TemplateList.selectedItems()
-        for sii in si:
-            print sii.data(QtCore.Qt.UserRole)
-        print "Select template ok"
+        if(index >= len(Templates)):
+            index=0
+
+        self.ui.TemplateList.setCurrentRow(index)
+        self.fn=""
+        if (self.exec_() > 0):
+            return  (self.ui.TemplateList.currentItem().data(QtCore.Qt.UserRole)[1],self.ui.TemplateList.currentRow())
+        else:
+            return None
+
+    def row_changed(self, Row):
+        index=Row
+        if index<0:
+            self.ui.label.setText("")
+
+        self.ui.label.setText(self.ui.TemplateList.item(index).data(QtCore.Qt.UserRole)[2])
+        
+def main():
+    return 0	
+    
+
+if __name__ == '__main__':
+    main()
 

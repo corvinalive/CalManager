@@ -32,7 +32,7 @@ class Commondata:
                             level = self.loglevel, filename = u'calmanager.log')
         self.logging = logging
         
-        self.version="0.4.1"
+        self.version="0.5.0"
         logging.info(u"Calmanager version "+str(self.version))
         
         self.kod1=locale.getpreferredencoding()
@@ -48,6 +48,85 @@ class Commondata:
         logging.info(u"temp_template_dir "+self.temp_template_dir)
         self.PressLastTemplateIndex=-1
         self.TempLastTemplateIndex=-1
+        #Загрузка списка шаблонов
+        self.PressTemplates=[]
+        self.MakeTemplatesList(self.press_template_dir,self.PressTemplates)
+
+        self.TempTemplates=[]
+        self.MakeTemplatesList(self.temp_template_dir,self.TempTemplates)
+
+    def MakeTemplatesList(self,TemplateDir,OutData):
+        #Создает списки шаблонов. Каждый элемент содержит имя шаблона,
+        #полное имя файла и описание шаблона.
+        fn=u""
+        filelist = os.listdir(TemplateDir)
+        filelistlen=len(filelist)
+        if  filelistlen==0 :
+            return
+        for f in filelist:
+            if f.endswith(u".odt"):
+                lbl=os.path.split(f)[1]
+                lbl=os.path.splitext(lbl)[0]
+                fullname=os.path.join(TemplateDir,f)
+                desc = self.ReadDescription(fullname)
+                OutData.append((lbl,fullname,desc))
+
+
+    def ReadDescription(self,filename):
+        #delete temp file
+        tempfilename=filename+".temp"
+        QtCore.QFile.remove(tempfilename)
+        
+        #copy to temp
+        if QtCore.QFile.copy(filename,tempfilename)==False:
+            logging.error(u"Чтение описания шаблонов. Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
+            return
+        
+        #delete content.xml		
+        QtCore.QFile.remove("content.xml")
+        
+        arguments = []
+        arguments.append(tempfilename)
+        arguments.append("content.xml")
+        #arguments.append("-o -d "+self.apppath)
+
+        unZip = QtCore.QProcess()
+        unZip.start("unzip", arguments)
+
+        if unZip.waitForFinished(5000)==False:
+            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла"+filename)
+            return
+
+        if (unZip.exitCode()<>0) :
+            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла"+filename+u": unzip вернул ненулевой код выхода"+str(unZip.exitCode()))
+            return
+        QtCore.QFile.remove(tempfilename)
+        
+        fl = open(os.path.join(self.apppath,"content.xml"))
+        flstr = unicode((fl.read()),"Utf8")
+        fl.close()
+
+        #delete content.xml		
+        QtCore.QFile.remove(os.path.join(self.apppath,"content.xml"))
+
+        b=flstr.find(u"Описание")+9
+        if (b-9) < 0:
+            return u""
+        
+        e=flstr.find(u"КонецОписание")-13
+        result= flstr[b:e]
+        lenstr = len(result)
+        result1=u""
+        start = 0
+        while 1:
+            end = result.find("<",start)
+            if (end > 0):
+                result1 = result1 + result[start:end]
+                start = result.find(">",end)+1
+                if (start < 1 ):
+                    break
+
+        return result1
 
     def LoadSetting(self):
         #print "Load setting"

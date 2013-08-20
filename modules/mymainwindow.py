@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/mymainwindow.ui'
 #
-# Created: Fri Aug 16 21:58:41 2013
+# Created: Tue Aug 20 22:50:09 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MyMainWindow(object):
     def setupUi(self, MyMainWindow):
         MyMainWindow.setObjectName("MyMainWindow")
-        MyMainWindow.resize(791, 600)
+        MyMainWindow.resize(911, 600)
         MyMainWindow.setDocumentMode(True)
         self.centralwidget = QtGui.QWidget(MyMainWindow)
         self.centralwidget.setObjectName("centralwidget")

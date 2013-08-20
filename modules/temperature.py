@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/temperature.ui'
 #
-# Created: Fri Aug 16 21:58:42 2013
+# Created: Tue Aug 20 22:54:56 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,8 +12,8 @@ from PySide import QtCore, QtGui
 class Ui_TempForm(object):
     def setupUi(self, TempForm):
         TempForm.setObjectName("TempForm")
-        TempForm.resize(724, 450)
-        TempForm.setMinimumSize(QtCore.QSize(724, 450))
+        TempForm.resize(724, 480)
+        TempForm.setMinimumSize(QtCore.QSize(724, 480))
         self.verticalLayout = QtGui.QVBoxLayout(TempForm)
         self.verticalLayout.setObjectName("verticalLayout")
         self.tabWidget = QtGui.QTabWidget(TempForm)
@@ -115,7 +115,7 @@ class Ui_TempForm(object):
         self.PoverBox.addItem("")
         self.verticalLayout_2.addWidget(self.PoverBox)
         self.layoutWidget_5 = QtGui.QWidget(self.tab)
-        self.layoutWidget_5.setGeometry(QtCore.QRect(400, 280, 281, 28))
+        self.layoutWidget_5.setGeometry(QtCore.QRect(400, 280, 281, 29))
         self.layoutWidget_5.setObjectName("layoutWidget_5")
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.layoutWidget_5)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -129,7 +129,7 @@ class Ui_TempForm(object):
         self.dateEdit.setObjectName("dateEdit")
         self.horizontalLayout_2.addWidget(self.dateEdit)
         self.layoutWidget_6 = QtGui.QWidget(self.tab)
-        self.layoutWidget_6.setGeometry(QtCore.QRect(400, 320, 216, 25))
+        self.layoutWidget_6.setGeometry(QtCore.QRect(400, 320, 220, 25))
         self.layoutWidget_6.setObjectName("layoutWidget_6")
         self.horizontalLayout = QtGui.QHBoxLayout(self.layoutWidget_6)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -146,7 +146,7 @@ class Ui_TempForm(object):
         self.MonthBox.setObjectName("MonthBox")
         self.horizontalLayout.addWidget(self.MonthBox)
         self.layoutWidget1 = QtGui.QWidget(self.tab)
-        self.layoutWidget1.setGeometry(QtCore.QRect(6, 6, 386, 158))
+        self.layoutWidget1.setGeometry(QtCore.QRect(6, 6, 392, 161))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.gridLayout_2 = QtGui.QGridLayout(self.layoutWidget1)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -646,6 +646,21 @@ class Ui_TempForm(object):
         self.PrintButton = QtGui.QPushButton(TempForm)
         self.PrintButton.setObjectName("PrintButton")
         self.verticalLayout.addWidget(self.PrintButton)
+        self.statusLabel = QtGui.QLabel(TempForm)
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(159, 158, 158))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        self.statusLabel.setPalette(palette)
+        self.statusLabel.setText("")
+        self.statusLabel.setObjectName("statusLabel")
+        self.verticalLayout.addWidget(self.statusLabel)
 
         self.retranslateUi(TempForm)
         self.tabWidget.setCurrentIndex(0)

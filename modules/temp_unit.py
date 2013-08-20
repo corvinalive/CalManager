@@ -25,6 +25,7 @@ from PySide import QtCore, QtGui
 import commondata, odt_tools
 
 from temperature import Ui_TempForm
+import selecttemplate_unit
 
 class TempForm(QtGui.QWidget):
     def __init__(self,cd,parent=None):
@@ -229,7 +230,12 @@ class TempForm(QtGui.QWidget):
             self.ui.INNEdit.setText(self.ui.OwnerBox.itemData(index))
             
     def print_button_clicked(self):
-        fileName = QtGui.QFileDialog.getOpenFileName(None,u"Открыть шаблон", self.Commondata.temp_template_dir, u"Файл-шаблон (*.odt)")
+        sel_obj = selecttemplate_unit.SelectTemplate(cd=self.Commondata, parent=self)
+        fileName = sel_obj.Select(self.Commondata.TempTemplates,self.Commondata.TempLastTemplateIndex)
+        if fileName is None:
+            return
+        self.Commondata.TempLastTemplateIndex=fileName[1]
+        del sel_obj
         if os.path.exists(fileName[0])==False:
             cd.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
             return
@@ -383,6 +389,9 @@ class TempForm(QtGui.QWidget):
         ss=u"%.2f"%self.d[5]
         a.append((u"TABL65",ss))
 
-        odt_tools.GenerateDocument(fileName[0], a, u"Температура",logg = self.Commondata.logging)
+        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Температура",logg = self.Commondata.logging)==True):
+            self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" сформирован протокол датчик №"+self.ui.SerialEdit.text())
+        else:
+            self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" ошибка формирования протокол датчика №"+self.ui.SerialEdit.text())
 
 
