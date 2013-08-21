@@ -282,11 +282,23 @@ class TempForm(QtGui.QWidget):
                 break
         a.append((u"TrustNo",TrustNo))        
         
+        ss=u""
+        if (self.min < 0):
+            ss=u"минус "
+        ss=ss+str(abs(self.min))
+        a.append((u"SMIN",ss))
+        
+        ss=u""
+        if (self.max < 0):
+            ss=u"минус "
+        ss=ss+str(abs(self.max))
+        a.append((u"SMAX",ss))
+
         ss = str(self.min)
         a.append((u"MIN", ss))
         ss =str(self.max)
         a.append((u"MAX", ss))
-        
+                
         ss=u"%.3f"%self.ui.r0box.value()
         a.append((u"RNULL", ss))
         
