@@ -86,6 +86,12 @@ class PressForm(QtGui.QWidget):
             self.ui.PoverBox.addItem("")
             for i in self.Commondata.Poveriteli:
                 self.ui.PoverBox.addItem(i[0])
+
+            #Заполняем список MIBox
+            self.ui.MIBox.clear()
+            #self.ui.PoverBox.addItem("")
+            for i in self.Commondata.PMI:
+                self.ui.MIBox.addItem(i[0])
                 
         self.col_points=self.ui.col_pointsBox.value()
         vv=16.0
@@ -387,10 +393,7 @@ class PressForm(QtGui.QWidget):
     def ownercurrentIndexChanged(self, index ):
         if index>=0:
             self.ui.INNEdit.setText(self.ui.OwnerBox.itemData(index))
-            
-    def print_button_clicked(self):
-        print "Print"         
-        
+                
     def OutToLabel(self,l, d, dp):
        s="%.3f mA; "%d
        ss="%.3f"%dp
@@ -441,7 +444,7 @@ class PressForm(QtGui.QWidget):
         a.append((u"pribor",self.ui.NameBox.currentText()))
         a.append((u"kleimo",self.ui.KleimoEdit.text()))
         a.append((u"serial", self.ui.SerialEdit.text()))
-        a.append((u"metodika", self.ui.MIBox.currentText()))
+        #a.append((u"metodika", self.ui.MIBox.currentText()))
         a.append((u"owner", self.ui.OwnerBox.currentText()))
         a.append((u"vosduh", self.ui.tvos_box.text()))
         a.append((u"atm", self.ui.atmkpa_box.text()))
@@ -458,6 +461,13 @@ class PressForm(QtGui.QWidget):
                 TrustNo=pover[1]
                 break
         a.append((u"TrustNo",TrustNo))
+
+        miindex=self.ui.MIBox.currentIndex()
+        if miindex >=0 :
+            print "metodika1",self.Commondata.PMI[miindex][1]
+            a.append((u"metodika1",self.Commondata.PMI[miindex][1]))
+            a.append((u"metodika2",self.Commondata.PMI[miindex][2]))
+            a.append((u"metodika3",self.Commondata.PMI[miindex][3]))
         
         ss = str(self.min)
         a.append((u"range_min", ss))

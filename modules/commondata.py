@@ -163,6 +163,18 @@ class Commondata:
             self.PModeli.append(Name)
         qs.endArray()
 
+        size = qs.beginReadArray("PMI")
+        self.PMI=[]
+        for i in range(size):
+            qs.setArrayIndex(i)
+            Name = qs.value("MI")
+            String1 = qs.value("string1")
+            String2 = qs.value("string2")
+            String3 = qs.value("string3")
+            #print Name
+            self.PMI.append((Name,String1,String2,String3))
+        qs.endArray()
+
         size = qs.beginReadArray("tModeli")
         self.tModeli=[]
         for i in range(size):
@@ -198,6 +210,16 @@ class Commondata:
         for i in range(c):
             qs.setArrayIndex(i)
             qs.setValue("FIO", self.PModeli[i])
+        qs.endArray()
+
+        size = qs.beginWriteArray("PMI")
+        c = len(self.PMI)
+        for i in range(c):
+            qs.setArrayIndex(i)
+            qs.setValue("MI", self.PMI[i][0])
+            qs.setValue("string1",self.PMI[i][1])
+            qs.setValue("string2",self.PMI[i][2])
+            qs.setValue("string3",self.PMI[i][3])
         qs.endArray()
 
         size = qs.beginWriteArray("tModeli")

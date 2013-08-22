@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>763</width>
-    <height>661</height>
+    <width>829</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,8 +24,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>681</width>
-     <height>591</height>
+     <width>821</width>
+     <height>601</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -190,8 +190,8 @@
          <rect>
           <x>2</x>
           <y>3</y>
-          <width>671</width>
-          <height>501</height>
+          <width>811</width>
+          <height>521</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -233,6 +233,79 @@
          </item>
          <item>
           <widget class="QPushButton" name="PDeleteButton">
+           <property name="text">
+            <string>Удалить</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line">
+           <property name="frameShadow">
+            <enum>QFrame::Sunken</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="midLineWidth">
+            <number>0</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Методики поверки датчиков давления</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTableWidget" name="PMITableWidget">
+           <attribute name="horizontalHeaderDefaultSectionSize">
+            <number>180</number>
+           </attribute>
+           <column>
+            <property name="text">
+             <string>Сокр. название</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Строка1</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Строка2</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Строка3</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PMIAddButton">
+           <property name="text">
+            <string>Добавить</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="PMIDeleteButton">
            <property name="text">
             <string>Удалить</string>
            </property>

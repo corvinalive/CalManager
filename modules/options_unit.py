@@ -44,6 +44,9 @@ class OptionsForm(QtGui.QDialog):
         self.connect(self.ui.PAddButton, QtCore.SIGNAL("clicked(bool)"), self.p_add_button_clicked)
         self.connect(self.ui.PDeleteButton, QtCore.SIGNAL("clicked(bool)"), self.p_delete_button_clicked)
 
+        self.connect(self.ui.PMIAddButton, QtCore.SIGNAL("clicked(bool)"), self.pmi_add_button_clicked)
+        self.connect(self.ui.PMIDeleteButton, QtCore.SIGNAL("clicked(bool)"), self.pmi_delete_button_clicked)
+
         self.connect(self.ui.tAddButton, QtCore.SIGNAL("clicked(bool)"), self.t_add_button_clicked)
         self.connect(self.ui.tDeleteButton, QtCore.SIGNAL("clicked(bool)"), self.t_delete_button_clicked)
 
@@ -99,6 +102,42 @@ class OptionsForm(QtGui.QDialog):
                 tvi=QtGui.QTableWidgetItem(i)
                 self.ui.PTableWidget.setItem(counter,0,tvi)
             counter+=1
+
+        #Заполнение списка методик ДД
+        self.ui.PMITableWidget.setRowCount(len(self.Commondata.PMI))
+        counter=0
+        for i in self.Commondata.PMI:
+            #short name
+            tvi=self.ui.PMITableWidget.item(counter,0)
+            if tvi:
+                tvi.setText(i[0])
+            else:
+                tvi=QtGui.QTableWidgetItem(i[0])
+                self.ui.PMITableWidget.setItem(counter,0,tvi)
+            #str1
+            tvi=self.ui.PMITableWidget.item(counter,1)
+            if tvi:
+                tvi.setText(i[1])
+            else:
+                tvi=QtGui.QTableWidgetItem(i[1])
+                self.ui.PMITableWidget.setItem(counter,1,tvi)
+            #str2
+            tvi=self.ui.PMITableWidget.item(counter,2)
+            if tvi:
+                tvi.setText(i[2])
+            else:
+                tvi=QtGui.QTableWidgetItem(i[2])
+                self.ui.PMITableWidget.setItem(counter,2,tvi)
+            #str3
+            tvi=self.ui.PMITableWidget.item(counter,3)
+            if tvi:
+                tvi.setText(i[3])
+            else:
+                tvi=QtGui.QTableWidgetItem(i[3])
+                self.ui.PMITableWidget.setItem(counter,3,tvi)
+
+            counter+=1
+
         #Заполнение списка tModeli
         self.ui.tTableWidget.setRowCount(len(self.Commondata.tModeli))
         counter=0
@@ -129,20 +168,26 @@ class OptionsForm(QtGui.QDialog):
         self.ui.PTableWidget.removeRow(i)
         
     def p_add_button_clicked (self,bool):
-        self.ui.PTableWidget.setRowCount(self.ui.PTableWidget.rowCount()+1)
+        self.ui.PTableWidget.setRowCount(self.ui.PTableWidget.rowCount()+1)        
+
+    def pmi_add_button_clicked (self,bool):
+        self.ui.PMITableWidget.setRowCount(self.ui.PMITableWidget.rowCount()+1)
         
-    def t_delete_button_clicked (self,bool):
-        i = self.ui.tTableWidget.currentRow()
-        self.ui.tTableWidget.removeRow(i)
+    def pmi_delete_button_clicked (self,bool):
+        i = self.ui.PMITableWidget.currentRow()
+        self.ui.PMITableWidget.removeRow(i)
         
     def t_add_button_clicked (self,bool):
         self.ui.tTableWidget.setRowCount(self.ui.tTableWidget.rowCount()+1)
+
+    def t_delete_button_clicked (self,bool):
+        i = self.ui.tTableWidget.currentRow()
+        self.ui.tTableWidget.removeRow(i)
         
     def add_button_clicked (self,bool):
         self.ui.CompanyTableWidget.setRowCount(self.ui.CompanyTableWidget.rowCount()+1)
 
     def ok_button_clicked (self):
-        print "Ok button pressed"
         #Save changes
         self.Commondata.servername=self.ui.ServerEdit.text()
         c=self.ui.CompanyTableWidget.rowCount()
@@ -163,6 +208,27 @@ class OptionsForm(QtGui.QDialog):
         self.Commondata.PModeli=[]
         for i in range(c):
             self.Commondata.PModeli.append(self.ui.PTableWidget.item(i,0).text())
+        #Запись списка методик ДД
+        c=self.ui.PMITableWidget.rowCount()
+        self.Commondata.PMI=[]
+        for i in range(c):
+            Name=self.ui.PMITableWidget.item(i,0).text()
+            if self.ui.PMITableWidget.item(i,1) is None:
+                String1=""
+            else:
+                String1=self.ui.PMITableWidget.item(i,1).text()
+
+            if self.ui.PMITableWidget.item(i,2) is None:
+                String2=""
+            else:
+                String2=self.ui.PMITableWidget.item(i,2).text()
+                
+            if self.ui.PMITableWidget.item(i,3) is None:
+                String3=""
+            else:
+                String3=self.ui.PMITableWidget.item(i,3).text()
+
+            self.Commondata.PMI.append((Name,String1,String2,String3))
         #Запись списка tModeli
         c=self.ui.tTableWidget.rowCount()
         self.Commondata.tModeli=[]

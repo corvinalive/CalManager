@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui/pressure.ui'
 #
-# Created: Tue Aug 20 22:53:32 2013
+# Created: Fri Aug 23 00:01:06 2013
 #      by: pyside-uic 0.2.14 running on PySide 1.1.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -209,7 +209,7 @@ class Ui_PressForm(object):
         self.label_24.setObjectName("label_24")
         self.gridLayout_6.addWidget(self.label_24, 0, 2, 1, 1)
         self.MIBox = QtGui.QComboBox(self.layoutWidget5)
-        self.MIBox.setEditable(True)
+        self.MIBox.setEditable(False)
         self.MIBox.setObjectName("MIBox")
         self.MIBox.addItem("")
         self.MIBox.addItem("")
