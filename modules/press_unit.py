@@ -470,6 +470,20 @@ class PressForm(QtGui.QWidget):
             a.append((u"metodika1",self.Commondata.PMI[miindex][1]))
             a.append((u"metodika2",self.Commondata.PMI[miindex][2]))
             a.append((u"metodika3",self.Commondata.PMI[miindex][3]))
+
+        #range values with sign
+        ss=u""
+        if (self.min < 0):
+            ss=u"минус "
+        ss=ss+str(abs(self.min))
+        a.append((u"srange_min",ss))
+        
+        ss=u""
+        if (self.max < 0):
+            ss=u"минус "
+        ss=ss+str(abs(self.max))
+        a.append((u"srange_max",ss))
+            
         
         ss = str(self.min)
         a.append((u"range_min", ss))

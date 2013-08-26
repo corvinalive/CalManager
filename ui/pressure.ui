@@ -42,7 +42,7 @@
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>418</x>
+         <x>480</x>
          <y>123</y>
          <width>117</width>
          <height>18</height>
@@ -55,7 +55,7 @@
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>418</x>
+         <x>480</x>
          <y>279</y>
          <width>220</width>
          <height>25</height>
@@ -94,7 +94,7 @@
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>480</x>
          <y>141</y>
          <width>281</width>
          <height>54</height>
@@ -162,7 +162,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>480</x>
          <y>57</y>
          <width>281</width>
          <height>64</height>
@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>480</x>
          <y>0</y>
          <width>281</width>
          <height>52</height>
@@ -258,7 +258,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>411</width>
+         <width>460</width>
          <height>128</height>
         </rect>
        </property>
@@ -353,7 +353,7 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>130</y>
-         <width>411</width>
+         <width>460</width>
          <height>161</height>
         </rect>
        </property>
@@ -421,8 +421,11 @@ p, li { white-space: pre-wrap; }
           <property name="decimals">
            <number>3</number>
           </property>
+          <property name="minimum">
+           <double>-1000000000.000000000000000</double>
+          </property>
           <property name="maximum">
-           <double>10000.000000000000000</double>
+           <double>1000000000.000000000000000</double>
           </property>
           <property name="value">
            <double>0.000000000000000</double>
@@ -473,8 +476,11 @@ p, li { white-space: pre-wrap; }
           <property name="decimals">
            <number>3</number>
           </property>
+          <property name="minimum">
+           <double>-1000000000.000000000000000</double>
+          </property>
           <property name="maximum">
-           <double>10000.000000000000000</double>
+           <double>1000000000.000000000000000</double>
           </property>
           <property name="value">
            <double>4.000000000000000</double>
@@ -546,7 +552,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>420</x>
+         <x>480</x>
          <y>246</y>
          <width>281</width>
          <height>29</height>
@@ -575,7 +581,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>418</x>
+         <x>480</x>
          <y>195</y>
          <width>281</width>
          <height>53</height>
@@ -626,7 +632,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="gridLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>2</x>
+         <x>0</x>
          <y>36</y>
          <width>841</width>
          <height>280</height>
