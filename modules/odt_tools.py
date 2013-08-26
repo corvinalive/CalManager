@@ -139,12 +139,12 @@ def Replace(spisok,logg=None):
     fl.close()
     return True
 
-def GenerateDocument(TemplateFileName, ReplaceList, Prefix, logg=None):
-    logg.info(u"TemplateFileName="+TemplateFileName+u" Prefix="+Prefix)
+def GenerateDocument(TemplateFileName, ReplaceList, Prefix, Logger):
+    Logger.info(u"TemplateFileName="+TemplateFileName+u" Prefix="+Prefix)
     res_ok=False
-    if (Prepare_odt(TemplateFileName,logg=logg)==True):
-        if (Replace(ReplaceList,logg=logg)==True):
-            if (Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=logg)==True):
+    if (Prepare_odt(TemplateFileName,logg=Logger)):
+        if (Replace(ReplaceList,logg=Logger)):
+            if (Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=Logger)):
                 return True
     return False
 

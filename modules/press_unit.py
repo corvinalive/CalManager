@@ -409,15 +409,18 @@ class PressForm(QtGui.QWidget):
           
             
     def print_button_clicked(self):
+        self.Commondata.logging.info(u"Поверка давления. кнопка генерация протокола")
         sel_obj = selecttemplate_unit.SelectTemplate(cd=self.Commondata, parent=self)
         fileName = sel_obj.Select(self.Commondata.PressTemplates,self.Commondata.PressLastTemplateIndex)
         if fileName is None:
+            self.Commondata.logging.error(u"Ошибка открытия шаблона. fileName[0] is None")
             return
         self.Commondata.PressLastTemplateIndex=fileName[1]
         del sel_obj
         if os.path.exists(fileName[0])==False:
-            cd.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
+            self.Commondata.logging.error(u"Ошибка открытия шаблона. Файл "+fileName[0]+" не существует")
             return
+        self.Commondata.logging.info(u"Выбран шаблон "+fileName[0])
         #Заполняем список для замены
         a = []
         if self.ui.DayBox.isChecked():
@@ -464,7 +467,6 @@ class PressForm(QtGui.QWidget):
 
         miindex=self.ui.MIBox.currentIndex()
         if miindex >=0 :
-            print "metodika1",self.Commondata.PMI[miindex][1]
             a.append((u"metodika1",self.Commondata.PMI[miindex][1]))
             a.append((u"metodika2",self.Commondata.PMI[miindex][2]))
             a.append((u"metodika3",self.Commondata.PMI[miindex][3]))
@@ -644,7 +646,7 @@ class PressForm(QtGui.QWidget):
         ss="%.3f"%self.maxv
         a.append((u"m-axv",ss))
 
-        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",logg = self.Commondata.logging)==True):
+        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",Logger = self.Commondata.logging)):
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" сформирован протокол датчик №"+self.ui.SerialEdit.text())
         else:
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" ошибка формирования протокол датчика №"+self.ui.SerialEdit.text())
