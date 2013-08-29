@@ -26,6 +26,13 @@ import logging
 
 class Commondata:
     def __init__(self):
+        self.kod1=sys.getfilesystemencoding()
+
+        if hasattr(sys, "frozen"):
+			self.apppath=os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding( )))
+        else:
+			self.apppath= os.path.dirname(unicode(__file__, sys.getfilesystemencoding( ))) 
+
         self.LoadSetting()
            
         logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
@@ -35,13 +42,11 @@ class Commondata:
         self.version="0.5.0"
         logging.info(u"Calmanager version "+str(self.version))
         
-        self.kod1=locale.getpreferredencoding()
-        logging.info(u"locale.getpreferredencoding "+str(self.kod1))
+        logging.info(u"sys.getfilesystemencoding "+str(self.kod1))
         
-        self.apppath=sys.path[0].decode(self.kod1,"utf-8")
         logging.info(u"Путь к программе "+self.apppath)
         
-        self.press_template_dir=os.path.join(self.apppath,u"Шаблоны давление")
+        self.press_template_dir=unicode(os.path.join(self.apppath,unicode(u"Шаблоны давление")))
         logging.info(u"press_template_dir "+self.press_template_dir)
         
         self.temp_template_dir=os.path.join(self.apppath,u"Шаблоны температура")
@@ -54,16 +59,23 @@ class Commondata:
 
         self.TempTemplates=[]
         self.MakeTemplatesList(self.temp_template_dir,self.TempTemplates)
+        
+    def UnicodeToSystem(self,filename):
+        return filename.encode(self.kod1)
+    
+    def SystemToUnicode(self,filename):
+        return unicode(filename,self.kod1)
 
     def MakeTemplatesList(self,TemplateDir,OutData):
         #Создает списки шаблонов. Каждый элемент содержит имя шаблона,
         #полное имя файла и описание шаблона.
         fn=u""
-        filelist = os.listdir(TemplateDir)
+        filelist = os.listdir(self.UnicodeToSystem(TemplateDir))
         filelistlen=len(filelist)
         if  filelistlen==0 :
             return
         for f in filelist:
+            f=self.SystemToUnicode(f)
             if f.endswith(u".odt"):
                 lbl=os.path.split(f)[1]
                 lbl=os.path.splitext(lbl)[0]
@@ -78,36 +90,37 @@ class Commondata:
         QtCore.QFile.remove(tempfilename)
         
         #copy to temp
-        if QtCore.QFile.copy(filename,tempfilename)==False:
+        if ( QtCore.QFile.copy(filename,tempfilename)==False):
             logging.error(u"Чтение описания шаблонов. Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
             return
         
         #delete content.xml		
-        QtCore.QFile.remove("content.xml")
+        QtCore.QFile.remove(os.path.join(self.apppath,"content.xml"))
         
         arguments = []
         arguments.append(tempfilename)
         arguments.append("content.xml")
-        #arguments.append("-o -d "+self.apppath)
+        arguments.append(u"-d")
+        arguments.append(self.apppath)
 
         unZip = QtCore.QProcess()
         unZip.start("unzip", arguments)
 
-        if unZip.waitForFinished(5000)==False:
-            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла"+filename)
+        if not unZip.waitForFinished(5000):
+            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла "+filename)
             return
 
         if (unZip.exitCode()<>0) :
-            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла"+filename+u": unzip вернул ненулевой код выхода"+str(unZip.exitCode()))
+            logging.error(u"Чтение описания шаблонов. Ошибка извлечения файла <content.xml> из файла "+filename+u": unzip вернул ненулевой код выхода"+str(unZip.exitCode()))
             return
         QtCore.QFile.remove(tempfilename)
         
-        fl = open(os.path.join(self.apppath,"content.xml"))
+        fl = open(self.UnicodeToSystem(os.path.join(self.apppath,"content.xml")))
         flstr = unicode((fl.read()),"Utf8")
         fl.close()
 
         #delete content.xml		
-        QtCore.QFile.remove(os.path.join(self.apppath,"content.xml"))
+        QtCore.QFile.remove(self.UnicodeToSystem(os.path.join(self.apppath,"content.xml")))
 
         b=flstr.find(u"Описание")+9
         if (b-9) < 0:
@@ -130,7 +143,7 @@ class Commondata:
 
     def LoadSetting(self):
         #print "Load setting"
-        qs = QtCore.QSettings("calmanager.ini", QtCore.QSettings.IniFormat)
+        qs = QtCore.QSettings(self.UnicodeToSystem(os.path.join(self.apppath,u"calmanager.ini")), QtCore.QSettings.IniFormat)
         #read name of server
         self.servername=qs.value("update/server","")
         self.loglevel=int(qs.value("update/loglevel",40))

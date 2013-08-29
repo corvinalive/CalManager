@@ -21,74 +21,60 @@
 #       MA 02110-1301, USA.
 
 from PySide import QtCore, QtGui
-import shutil, sys, locale, time, shutil
+import shutil, sys, locale, time, shutil, os
 
-def Prepare_odt(filename,logg=None):
-    #delete temp file
-    tempfilename=filename+".temp"
-    QtCore.QFile.remove(tempfilename)
-	
-	#copy print.odt to print.temp
-    if QtCore.QFile.copy(filename,tempfilename)==False:
-        msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u"Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
-        msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
-        msgBox.exec_()
-        return False
+def Prepare_odt(apppath, filename,logg=None):
+	#delete temp file
+	tempfilename=filename+".temp"
+	QtCore.QFile.remove(tempfilename)
+
+	#copy file to temporary
+	if QtCore.QFile.copy(filename,tempfilename)==False:
+		logging.error(u"Prepare_odt. Ошибка копирования файла "+filename+u" во временный файл "+tempfilename)
+		return False
 	
 	#delete content.xml		
-    QtCore.QFile.remove("content.xml")
+	QtCore.QFile.remove(os.path.join(apppath,"content.xml"))
 	
-	#извлечение content.xml из print.temp
-    arguments = []
-    arguments.append(tempfilename)
-    arguments.append("content.xml")
+	arguments = []
+	arguments.append(tempfilename)
+	arguments.append("content.xml")
+	arguments.append(u"-d")
+	arguments.append(apppath)
 
-    unZip = QtCore.QProcess()
-    unZip.start("unzip", arguments)
+	unZip = QtCore.QProcess()
+	unZip.start("unzip", arguments)
 	
-    if unZip.waitForFinished(5000)==False:
-        msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла"+tempfilename)
-        msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
-        msgBox.exec_()
-        return False
+	if unZip.waitForFinished(5000)==False:
+		logging.error(u"Prepare_odt. Ошибка извлечения файла <content.xml> из файла"+tempfilename)
+		return False
 	
-    if (unZip.exitCode()<>0) :
-        msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u"Ошибка извлечения файла <content.xml> из файла "+tempfilename+u": unzip вернул ненулевой код выхода")
-        msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
-        msgBox.exec_()
-        return False
-    return True
+	if (unZip.exitCode()<>0) :
+		logging.error(u"Prepare_odt. Ошибка извлечения файла <content.xml> из файла"+tempfilename+u": unzip вернул ненулевой код выхода")
+		return False
+	return True
 
-def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=None):
+def Save_odt(apppath,tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=None):
     #обновление content.xml из print.temp
     #print "Prefix1=",Prefix1 
     arguments =[]
+    arguments.append("-j")
     arguments.append(tempfilename)
-    arguments.append("content.xml")
+    arguments.append(os.path.join(apppath,"content.xml"))
 
     unZip = QtCore.QProcess()
     unZip.start("zip", arguments)
 	
     if unZip.waitForFinished (5000)==False:
-        msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u"Ошибка обновления файла <content.xml> в файле "+tempfilename)
-        msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
-        msgBox.exec_()
+        logging.error(u"Save_odt. Ошибка обновления файла <content.xml> в файле "+tempfilename)
         return False
     
     if unZip.exitCode() <> 0 :
-        msgBox = QtGui.QMessageBox()
-        msgBox.setInformativeText(u"Ошибка обновления <content.xml> в файле "+tempfilename+": zip вернул ненулевой код выхода")
-        msgBox.setText(u"Ошибка при формировании свидетельства и протокола поверки")
-        msgBox.exec_()
+        logging.error(u"Save_odt. Ошибка обновления <content.xml> в файле "+tempfilename+": zip вернул ненулевой код выхода")
         return False
     
     #create new directory
     dir1 = QtCore.QDir()
-    apppath=sys.path[0].decode(locale.getpreferredencoding(),"utf-8")
     dir1.cd(apppath)
     DirOk=False
     new_dir=(QtCore.QDateTime.currentDateTime().toString(u"yyyy MM dd"))
@@ -119,7 +105,7 @@ def Save_odt(tempfilename, newfilename=None, Prefix1=None, Postfix1=None,logg=No
 
     shutil.copy(tempfilename,filename)
 
-    QtCore.QFile.remove("content.xml")
+    QtCore.QFile.remove(os.path.join(apppath,"content.xml"))
     QtCore.QFile.remove(tempfilename)
     return True
 	    
@@ -139,12 +125,12 @@ def Replace(spisok,logg=None):
     fl.close()
     return True
 
-def GenerateDocument(TemplateFileName, ReplaceList, Prefix, Logger):
+def GenerateDocument(apppath,TemplateFileName, ReplaceList, Prefix, Logger):
     Logger.info(u"TemplateFileName="+TemplateFileName+u" Prefix="+Prefix)
     res_ok=False
-    if (Prepare_odt(TemplateFileName,logg=Logger)):
+    if (Prepare_odt(apppath, TemplateFileName,logg=Logger)):
         if (Replace(ReplaceList,logg=Logger)):
-            if (Save_odt(TemplateFileName+".temp",Prefix1=Prefix,logg=Logger)):
+            if (Save_odt(apppath,TemplateFileName+".temp",Prefix1=Prefix,logg=Logger)):
                 return True
     return False
 

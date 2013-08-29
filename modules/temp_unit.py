@@ -401,7 +401,7 @@ class TempForm(QtGui.QWidget):
         ss=u"%.2f"%self.d[5]
         a.append((u"TABL65",ss))
 
-        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Температура",logg = self.Commondata.logging)):
+        if (odt_tools.GenerateDocument(self.Commondata.apppath,fileName[0], a, Prefix=u"Температура",logg = self.Commondata.logging)):
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" сформирован протокол датчик №"+self.ui.SerialEdit.text())
         else:
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" ошибка формирования протокол датчика №"+self.ui.SerialEdit.text())

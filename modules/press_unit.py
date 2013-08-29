@@ -660,7 +660,7 @@ class PressForm(QtGui.QWidget):
         ss="%.3f"%self.maxv
         a.append((u"m-axv",ss))
 
-        if (odt_tools.GenerateDocument(fileName[0], a, Prefix=u"Давление",Logger = self.Commondata.logging)):
+        if (odt_tools.GenerateDocument(self.Commondata.apppath,fileName[0], a, Prefix=u"Давление",Logger = self.Commondata.logging)):
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" сформирован протокол датчик №"+self.ui.SerialEdit.text())
         else:
             self.ui.statusLabel.setText(QtCore.QDateTime.currentDateTime ().toString(u"hh:mm")+u" ошибка формирования протокол датчика №"+self.ui.SerialEdit.text())
