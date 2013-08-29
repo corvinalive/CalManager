@@ -115,13 +115,6 @@ def main():
         
 	icon_filename=os.path.join(myapp.Commondata.apppath,"document_32.png")
 	myapp.Commondata.logging.info("icon filename is "+icon_filename)
-
-	#icon_app = None
-	#icon_app = QtGui.QIcon()
-	#if icon_app is None:
-	#	myapp.Commondata.logging.info("icon_app is Null")
-    #myapp.Commondata.logging.info("IsNull "+str(icon_app.IsNull()))
-    #myapp.Commondata.logging.info(u"Icon name "+icon_app.name())
             
     myapp.setWindowIcon(QtGui.QIcon(os.path.join(myapp.Commondata.apppath,"document_32.png")))
     myapp.show()

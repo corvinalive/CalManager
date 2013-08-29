@@ -27,17 +27,19 @@ import logging
 class Commondata:
     def __init__(self):
         self.kod1=sys.getfilesystemencoding()
+        print "kod1= ",self.kod1
 
         if hasattr(sys, "frozen"):
 			self.apppath=os.path.dirname(unicode(sys.executable, sys.getfilesystemencoding( )))
         else:
-			self.apppath= os.path.dirname(unicode(__file__, sys.getfilesystemencoding( ))) 
+			self.apppath= unicode(sys.path[0], sys.getfilesystemencoding( ))
 
         self.LoadSetting()
            
         logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s',
                             level = self.loglevel, filename = u'calmanager.log')
         self.logging = logging
+        print logging
         
         self.version="0.5.0"
         logging.info(u"Calmanager version "+str(self.version))
@@ -143,7 +145,7 @@ class Commondata:
 
     def LoadSetting(self):
         #print "Load setting"
-        qs = QtCore.QSettings(self.UnicodeToSystem(os.path.join(self.apppath,u"calmanager.ini")), QtCore.QSettings.IniFormat)
+        qs = QtCore.QSettings(os.path.join(self.apppath,u"calmanager.ini"), QtCore.QSettings.IniFormat)
         #read name of server
         self.servername=qs.value("update/server","")
         self.loglevel=int(qs.value("update/loglevel",40))
